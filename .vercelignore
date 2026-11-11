@@ -1,21 +1,13 @@
-*
-!index.html
-!vercel.json
-!assets/
-!assets/**
-!rooms/
-!rooms/**
-!services/
-!services/**
-!gallery/
-!gallery/**
-!contact/
-!contact/**
-!booking/
-!booking/**
-!chambres/
-!chambres/**
-!galerie/
-!galerie/**
-!reservation/
-!reservation/**
+# Fichiers de travail exclus du déploiement (non utilisés par le site)
+.git/
+.preview/
+.vercel/
+.vercelignore
+
+# Sources de design / documentation
+*.md
+Styleboard luxueux de l’hôtel Majestic (1).png
+generated-image-db6d1959-5fbe-424f-a9e6-7841471d5ab0.png
+
+# Banque d'images brutes (non référencée dans les pages)
+logo et image/
