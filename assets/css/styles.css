@@ -110,6 +110,19 @@ ul, ol { margin: 0; padding: 0; }
 .menu-overlay__nav a:hover .icon, .menu-overlay__nav a[aria-current="page"] .icon { opacity: 1; transform: translate(0); }
 .menu-overlay__bottom { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .menu-overlay__bottom p { font-size: 14px; }
+.menu-overlay__settings { padding: 18px 0; border-top: 1px solid var(--hairline); }
+.menu-overlay__switch-group { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.theme-toggle { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0; border: 0; background: none; color: var(--gold-ink); font-family: var(--font-ui); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; transition: color var(--dur-fast); }
+.theme-toggle:hover { color: var(--gold); }
+.theme-toggle .icon { width: 18px; height: 18px; transition: opacity var(--dur-fast), transform var(--dur-fast); }
+html[data-theme="dark"] .theme-toggle__sun { opacity: 0; transform: scale(.55); }
+html:not([data-theme="dark"]) .theme-toggle__moon { opacity: 0; transform: scale(.55); }
+.lang-switch { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-ui); font-size: 11px; letter-spacing: .15em; }
+.lang-switch__item { position: relative; padding: 8px 2px; color: var(--text-body); text-decoration: none; transition: color var(--dur-fast); }
+.lang-switch__item:hover { color: var(--ink); }
+.lang-switch__item.is-active { color: var(--ink); }
+.lang-switch__item.is-active::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--gold); }
+.lang-switch__sep { color: var(--hairline); }
 @keyframes menuIn { from { opacity: 0; clip-path: inset(0 0 100% 0); } to { opacity: 1; clip-path: inset(0); } }
 .hero { --hero-y: 0px; --hero-blur: 0px; --hero-fade: 0; --hero-content-opacity: 1; position: relative; height: 100svh; min-height: 640px; overflow: hidden; background: var(--ink); color: var(--paper); }
 .hero__scene { position: absolute; inset: 0; overflow: hidden; transform: translate3d(0, var(--hero-y), 0); will-change: transform; }

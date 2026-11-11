@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Booking request | Majestic Residence Hotel, Bonoua</title>
+  <meta name="description" content="Choose your stay and arrival date at the Majestic Residence Hotel in Bonoua, then send your booking request by WhatsApp. The booking remains subject to confirmation by the residence.">
+  <meta name="theme-color" content="#F8F5EF">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex,follow">
+  <meta property="og:locale" content="en_GB">
+  <link rel="canonical" href="https://majestic-residence-hotel.vercel.app/en/booking/">
+  <link rel="alternate" hreflang="fr" href="https://majestic-residence-hotel.vercel.app/booking/">
+  <link rel="alternate" hreflang="en" href="https://majestic-residence-hotel.vercel.app/en/booking/">
+  <link rel="alternate" hreflang="x-default" href="https://majestic-residence-hotel.vercel.app/booking/">
+  <script src="../../assets/js/config.js"></script>
+  <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=DM+Sans:wght@400;500&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body data-page="booking" data-solid-header>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div data-site-header></div>
+
+  <main id="main" class="reservation-page">
+    <section class="reservation-hero container container--editorial" aria-labelledby="reservation-title">
+      <p class="label">YOUR STAY BEGINS HERE</p>
+      <h1 id="reservation-title">BOOKING<br><em>REQUEST.</em></h1>
+      <p>Choose your stay and enter your arrival date. Your pre-filled request will open in WhatsApp: send it to our team for confirmation.</p>
+      <ol class="booking-steps" aria-label="Booking request steps">
+        <li><span>01</span>Stay</li>
+        <li><span>02</span>Date &amp; details</li>
+        <li><span>03</span>WhatsApp</li>
+      </ol>
+    </section>
+
+    <section class="booking-layout container container--editorial" aria-label="Booking request form">
+      <form class="booking-form" data-booking-form novalidate>
+        <div class="booking-form__section">
+          <span class="booking-form__number">01</span>
+          <div class="booking-form__fields">
+            <h2>CHOOSE YOUR STAY</h2>
+            <div class="field">
+              <label for="stay">Preferred stay</label>
+              <select id="stay" name="stay" required aria-describedby="stay-error">
+                <option value="">Select a stay</option>
+                <option value="day-rest">Day Rest · 3 hours · 20,000 FCFA</option>
+                <option value="full-stay">Full Stay · noon to noon · 30,000 FCFA</option>
+                <option value="night">Night · 10 pm to noon · 25,000 FCFA</option>
+              </select>
+              <span class="field__error" id="stay-error"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-form__section">
+          <span class="booking-form__number">02</span>
+          <div class="booking-form__fields">
+            <h2>LET’S PREPARE YOUR ARRIVAL</h2>
+            <div class="field-row">
+              <div class="field">
+                <label for="date">Arrival date</label>
+                <input id="date" name="date" type="date" required aria-describedby="date-error">
+                <span class="field__error" id="date-error"></span>
+              </div>
+              <div class="field">
+                <label for="name">Your full name</label>
+                <input id="name" name="name" type="text" autocomplete="name" placeholder="First and last name" minlength="2" required aria-describedby="name-error">
+                <span class="field__error" id="name-error"></span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="preferences">Notes / preferences <span>(optional)</span></label>
+              <textarea id="preferences" name="preferences" rows="4" maxlength="500" placeholder="Tell our team anything useful"></textarea>
+              <span class="field__hint">500 characters maximum</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-form__submit">
+          <button class="button button--gold" type="submit">CONTINUE ON WHATSAPP <span data-icon="arrow-up-right"></span></button>
+          <p>No payment is taken online. Every booking remains a request until confirmed by the residence.</p>
+          <p class="booking-form__status" data-booking-status role="status" aria-live="polite"></p>
+          <a class="text-link" data-booking-fallback href="#" target="_blank" rel="noopener noreferrer" hidden>REOPEN WHATSAPP <span data-icon="arrow-up-right"></span></a>
+          <noscript>Enable JavaScript to prepare your request, or call our team directly on +225 07 47 82 01 71.</noscript>
+        </div>
+      </form>
+
+      <aside class="booking-summary" aria-labelledby="summary-title">
+        <p class="label">YOUR SELECTION</p>
+        <h2 id="summary-title">SUMMARY</h2>
+        <div class="booking-summary__formula">
+          <span data-summary-formula>Choose a stay</span>
+          <small data-summary-duration>Select the stay you would like</small>
+        </div>
+        <dl>
+          <div><dt>Arrival date</dt><dd data-summary-date>To be confirmed</dd></div>
+          <div><dt>Rate</dt><dd data-summary-price>—</dd></div>
+          <div><dt>Location</dt><dd>Bonoua, Côte d’Ivoire</dd></div>
+        </dl>
+        <div class="booking-summary__note">
+          <span data-icon="check"></span>
+          <p>Our team checks availability on WhatsApp. Your request is only confirmed after validation by the residence.</p>
+        </div>
+        <a class="booking-summary__phone" href="tel:+2250747820171">
+          <span data-icon="phone"></span>
+          <span>A question?<br><strong>+225 07 47 82 01 71</strong></span>
+        </a>
+      </aside>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+
+  <script src="../../assets/js/i18n.js" defer></script>
+  <script src="../../assets/js/booking.js" defer></script>
+  <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/motion.js" defer></script>
+</body>
+</html>

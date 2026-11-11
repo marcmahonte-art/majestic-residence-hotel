@@ -4,6 +4,9 @@
   const recordingMode = document.body.dataset.page === "home" && new URLSearchParams(window.location.search).get("rec") === "1" && !reducedMotion.matches;
   const siteRoot = config.siteRoot || "";
   const imgRoot = config.imgRoot || "/assets/images";
+  const i18n = window.MAJESTIC_I18N;
+  const t = i18n.t;
+  const langRoot = i18n.isEn ? `${siteRoot}/en` : siteRoot;
 
   const toggleTheme = () => {
     const current = document.documentElement.dataset.theme || "light";
@@ -18,10 +21,19 @@
   const updateThemeControls = (theme) => {
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#121110" : "#F8F5EF");
     document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
-      button.setAttribute("aria-label", `Passer au thème ${theme === "dark" ? "clair" : "sombre"}`);
+      button.setAttribute("aria-label", theme === "dark" ? t.theme.toLight : t.theme.toDark);
       const text = button.querySelector(".theme-label");
-      if (text) text.textContent = theme === "dark" ? "THÈME CLAIR" : "THÈME SOMBRE";
+      if (text) text.textContent = theme === "dark" ? t.theme.light : t.theme.dark;
     });
+  };
+
+  // Cibles du sélecteur de langue : on conserve la page courante.
+  const currentPath = window.location.pathname;
+  const relativePath = currentPath.startsWith(siteRoot) ? currentPath.slice(siteRoot.length) : currentPath;
+  const pathWithoutLang = relativePath.replace(/^\/en(?=\/|$)/, "") || "/";
+  const langLinks = {
+    fr: `${siteRoot}${pathWithoutLang}`,
+    en: `${siteRoot}/en${pathWithoutLang}`
   };
 
   const paths = {
@@ -51,11 +63,11 @@
   const icon = (name, className = "") => `<svg class="icon ${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${paths[name] || paths["arrow-right"]}</svg>`;
 
   const navigation = [
-    ["home", "Accueil", `${siteRoot}/`],
-    ["rooms", "Chambres", `${siteRoot}/rooms/`],
-    ["services", "Services", `${siteRoot}/services/`],
-    ["gallery", "Galerie", `${siteRoot}/gallery/`],
-    ["contact", "Contact", `${siteRoot}/contact/`]
+    ["home", t.nav.home, `${langRoot}/`],
+    ["rooms", t.nav.rooms, `${langRoot}/rooms/`],
+    ["services", t.nav.services, `${langRoot}/services/`],
+    ["gallery", t.nav.gallery, `${langRoot}/gallery/`],
+    ["contact", t.nav.contact, `${langRoot}/contact/`]
   ];
 
   const renderHeader = () => {
@@ -65,20 +77,20 @@
     const currentTheme = document.documentElement.dataset.theme || "light";
     mount.innerHTML = `
       <header class="site-header" data-header>
-        <button class="header__menu" type="button" data-menu-open aria-haspopup="dialog" aria-label="Ouvrir le menu">
-          ${icon("menu")}<span>MENU</span>
+        <button class="header__menu" type="button" data-menu-open aria-haspopup="dialog" aria-label="${t.header.menuOpen}">
+          ${icon("menu")}<span>${t.header.menu}</span>
         </button>
-        <a class="header__logo" href="${siteRoot}/" aria-label="Majestic Residence Hotel — Accueil">
+        <a class="header__logo" href="${langRoot}/" aria-label="${t.header.home}">
           <img src="${imgRoot}/logo-majestic.png" width="560" height="560" alt="Majestic Residence Hotel" fetchpriority="high">
         </a>
-        <a class="header__booking" href="${siteRoot}/booking/" aria-label="Demander une réservation"><span>RÉSERVER</span>${icon("arrow-up-right")}</a>
+        <a class="header__booking" href="${langRoot}/booking/" aria-label="${t.header.bookAria}"><span>${t.header.book}</span>${icon("arrow-up-right")}</a>
       </header>
-      <dialog class="menu-overlay" data-menu aria-label="Navigation principale">
+      <dialog class="menu-overlay" data-menu aria-label="${t.header.primaryNav}">
         <div class="menu-overlay__top">
           <span class="label">MAJESTIC RESIDENCE HOTEL</span>
-          <button class="menu-overlay__close" type="button" data-menu-close aria-label="Fermer le menu">${icon("x")}<span>FERMER</span></button>
+          <button class="menu-overlay__close" type="button" data-menu-close aria-label="${t.header.closeMenu}">${icon("x")}<span>${t.header.menuClose}</span></button>
         </div>
-        <nav class="menu-overlay__nav" aria-label="Rubriques du site">
+        <nav class="menu-overlay__nav" aria-label="${t.header.siteSections}">
           ${navigation.map(([id, label, href], index) => `<a href="${href}" ${page === id ? 'aria-current="page"' : ""}><span>0${index + 1}</span>${label}${icon("arrow-up-right")}</a>`).join("")}
         </nav>
         <div class="menu-overlay__settings">
@@ -86,14 +98,16 @@
             <button type="button" class="theme-toggle" data-theme-toggle>
               ${icon("sun", "theme-toggle__sun")}${icon("moon", "theme-toggle__moon")}<span class="theme-label"></span>
             </button>
-            <div class="lang-switch">
-              <span class="lang-switch__item is-active" aria-label="Français">FR</span>
+            <div class="lang-switch" role="group" aria-label="${t.langSwitch.group}">
+              <a class="lang-switch__item${i18n.isEn ? "" : " is-active"}" href="${langLinks.fr}" hreflang="fr" lang="fr"${i18n.isEn ? "" : ' aria-current="true"'}>FR</a>
+              <span class="lang-switch__sep" aria-hidden="true">/</span>
+              <a class="lang-switch__item${i18n.isEn ? " is-active" : ""}" href="${langLinks.en}" hreflang="en" lang="en"${i18n.isEn ? ' aria-current="true"' : ""}>EN</a>
             </div>
           </div>
         </div>
         <div class="menu-overlay__bottom">
           <p>${config.location}</p>
-          <a class="button button--gold" href="${siteRoot}/booking/">DEMANDE DE RÉSERVATION ${icon("arrow-right")}</a>
+          <a class="button button--gold" href="${langRoot}/booking/">${t.header.bookingButton} ${icon("arrow-right")}</a>
         </div>
       </dialog>`;
 
@@ -110,23 +124,23 @@
       <footer class="site-footer">
         <div class="site-footer__main container">
           <div class="site-footer__brand">
-            <a href="${siteRoot}/" aria-label="Majestic Residence Hotel — Accueil"><img src="${imgRoot}/logo-majestic.png" width="560" height="560" loading="lazy" alt="Majestic Residence Hotel"></a>
-            <p>Des séjours élégants,<br>des instants paisibles.</p>
+            <a href="${langRoot}/" aria-label="${t.header.home}"><img src="${imgRoot}/logo-majestic.png" width="560" height="560" loading="lazy" alt="Majestic Residence Hotel"></a>
+            <p>${t.footer.tagline}</p>
           </div>
           <div class="site-footer__column">
-            <span class="label">CONTACTEZ-NOUS</span>
+            <span class="label">${t.footer.contact}</span>
             <a href="tel:${config.phonePrimaryHref}">${config.phonePrimary}</a>
             <a href="https://wa.me/${config.WHATSAPP_NUMBER}" data-whatsapp>WhatsApp</a>
             <a href="${config.facebook}" target="_blank" rel="noopener noreferrer">Facebook ${icon("arrow-up-right")}</a>
           </div>
           <div class="site-footer__column">
-            <span class="label">ADRESSE</span>
-            <p>Bonoua<br>Côte d’Ivoire</p>
+            <span class="label">${t.footer.address}</span>
+            <p>${t.footer.city}<br>${t.footer.country}</p>
           </div>
-          <nav class="site-footer__column" aria-label="Navigation de pied de page">
-            <span class="label">NAVIGATION</span>
+          <nav class="site-footer__column" aria-label="${t.footer.footerNav}">
+            <span class="label">${t.footer.navigation}</span>
             ${navigation.map(([, label, href]) => `<a href="${href}">${label}</a>`).join("")}
-            <a href="${siteRoot}/booking/">Demande de réservation</a>
+            <a href="${langRoot}/booking/">${t.footer.booking}</a>
           </nav>
         </div>
         <div class="site-footer__bottom container">
@@ -138,13 +152,16 @@
 
   const renderFormulas = () => {
     document.querySelectorAll("[data-formulas]").forEach((table) => {
-      table.innerHTML = config.formulas.map((formula) => `
-        <a class="formula-row" href="${siteRoot}/booking/?stay=${formula.id}" data-book-formula="${formula.id}" aria-label="Demander la formule ${formula.name}, ${formula.duration}, ${formula.price} sur WhatsApp">
-          <span class="formula-row__name">${formula.name}</span>
-          <span class="formula-row__duration">${formula.duration}</span>
-          <strong class="formula-row__price">${formula.price}</strong>
-          <span class="formula-row__action">RÉSERVER ${icon("arrow-up-right")}</span>
-        </a>`).join("");
+      table.innerHTML = config.formulas.map((formula) => {
+        const local = t.formulas[formula.id] || t.formulas[formula.key] || formula;
+        return `
+        <a class="formula-row" href="${langRoot}/booking/?stay=${formula.id}" data-book-formula="${formula.id}" aria-label="${t.formulas.rowAria(local.name, local.duration, local.price)}">
+          <span class="formula-row__name">${local.name}</span>
+          <span class="formula-row__duration">${local.duration}</span>
+          <strong class="formula-row__price">${local.price}</strong>
+          <span class="formula-row__action">${t.formulas.book} ${icon("arrow-up-right")}</span>
+        </a>`;
+      }).join("");
     });
   };
 
@@ -256,7 +273,7 @@
     link.className = "floating-whatsapp";
     link.dataset.whatsapp = "";
     link.href = `https://wa.me/${config.WHATSAPP_NUMBER}`;
-    link.setAttribute("aria-label", "Demander une réservation sur WhatsApp");
+    link.setAttribute("aria-label", t.floatingWhatsApp);
     link.innerHTML = icon("message-circle");
     document.body.append(link);
   };

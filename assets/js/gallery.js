@@ -1,7 +1,20 @@
 (() => {
   const config = window.MAJESTIC_CONFIG;
+  const t = window.MAJESTIC_I18N.t;
   const galleries = [...document.querySelectorAll("[data-gallery]")];
   if (!galleries.length) return;
+
+  // Applique les libellés de la langue courante sur un média de config.js.
+  const localMedia = (key) => {
+    const base = config.MEDIA[key];
+    const local = t.media[key] || {};
+    return {
+      ...base,
+      title: local.title || base.title,
+      category: local.category || base.category,
+      alt: local.alt || base.alt
+    };
+  };
 
   const picture = (item, eager = false) => `
     <picture>
@@ -12,15 +25,15 @@
   const createDialog = () => {
     const dialog = document.createElement("dialog");
     dialog.className = "lightbox";
-    dialog.setAttribute("aria-label", "Visionneuse de photos en plein écran");
+    dialog.setAttribute("aria-label", t.gallery.lightbox);
     dialog.innerHTML = `
-      <button class="lightbox__close" type="button" data-lightbox-close aria-label="Fermer la photo">${window.MajesticUI.icon("x")}</button>
-      <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Photo précédente">${window.MajesticUI.icon("chevron-left")}</button>
+      <button class="lightbox__close" type="button" data-lightbox-close aria-label="${t.gallery.close}">${window.MajesticUI.icon("x")}</button>
+      <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="${t.gallery.previous}">${window.MajesticUI.icon("chevron-left")}</button>
       <figure class="lightbox__figure">
         <img data-lightbox-image alt="" width="1600" height="1200">
         <figcaption><span data-lightbox-category></span><strong data-lightbox-title></strong><span data-lightbox-count></span></figcaption>
       </figure>
-      <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Photo suivante">${window.MajesticUI.icon("chevron-right")}</button>`;
+      <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="${t.gallery.next}">${window.MajesticUI.icon("chevron-right")}</button>`;
     document.body.append(dialog);
     return dialog;
   };
@@ -157,10 +170,10 @@
 
   galleries.forEach((gallery) => {
     const keys = config[gallery.dataset.gallery === "preview" ? "galleryPreview" : "galleryAll"];
-    const items = keys.map((key) => config.MEDIA[key]);
+    const items = keys.map(localMedia);
     gallery.innerHTML = items.map((item, index) => `
       <figure class="gallery-item" data-category="${item.category}" data-reveal="fade">
-        <button type="button" class="gallery-item__button" data-gallery-index="${index}" aria-label="Agrandir la photo : ${item.title}">
+        <button type="button" class="gallery-item__button" data-gallery-index="${index}" aria-label="${t.gallery.zoom(item.title)}">
           ${picture(item, gallery.dataset.gallery === "preview" && index === 0)}
           <span class="gallery-item__expand" aria-hidden="true">${window.MajesticUI.icon("expand")}</span>
         </button>
@@ -182,7 +195,8 @@
 
     const filters = document.querySelector("[data-gallery-filters]");
     if (filters && gallery.dataset.gallery === "full") {
-      const categories = ["Toutes", ...new Set(items.map((item) => item.category))];
+      const allLabel = t.gallery.all;
+      const categories = [allLabel, ...new Set(items.map((item) => item.category))];
       filters.innerHTML = categories.map((category, index) => `
         <button type="button" class="filter-button${index === 0 ? " is-active" : ""}" data-filter="${category}" aria-pressed="${index === 0}">${category}</button>`).join("");
       filters.addEventListener("click", (event) => {
@@ -194,7 +208,7 @@
         });
         const category = button.dataset.filter;
         gallery.querySelectorAll(".gallery-item").forEach((item) => {
-          item.hidden = category !== "Toutes" && item.dataset.category !== category;
+          item.hidden = category !== allLabel && item.dataset.category !== category;
         });
       });
     }

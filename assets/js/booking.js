@@ -1,23 +1,40 @@
 (() => {
   const config = window.MAJESTIC_CONFIG;
+  const i18n = window.MAJESTIC_I18N;
+  const t = i18n.t;
+  const b = t.booking;
 
   const getFormula = (id) =>
     config.formulas.find((formula) => formula.id === id || formula.key === id);
 
+  // Applique les libellés de la langue courante sur une formule de config.js.
+  const localizeFormula = (formula) => {
+    if (!formula) return null;
+    const local = t.formulas[formula.id] || t.formulas[formula.key] || {};
+    return {
+      ...formula,
+      name: local.name || formula.name,
+      duration: local.duration || formula.duration,
+      price: local.price || formula.price
+    };
+  };
+
+  const getLocalFormula = (id) => localizeFormula(getFormula(id));
+
   const buildMessage = ({ formulaId, date, name, preferences } = {}) => {
-    const formula = getFormula(formulaId);
-    const formulaName = formula ? formula.name : "À conseiller";
+    const formula = getLocalFormula(formulaId);
+    const formulaName = formula ? formula.name : b.fallbackFormula;
     const lines = [
-      "Bonjour Majestic Residence Hotel,",
-      "Je souhaite faire une demande de réservation.",
-      `Formule : ${formulaName}`,
-      `Date : ${date || "À préciser"}`,
-      `Nom : ${name || "À préciser"}`
+      b.messageIntro,
+      b.messageRequest,
+      `${b.messageFormula} : ${formulaName}`,
+      `${b.messageDate} : ${date || b.fallbackDate}`,
+      `${b.messageName} : ${name || b.fallbackName}`
     ];
     if (preferences) {
-      lines.push(`Préférences : ${preferences}`);
+      lines.push(`${b.messagePreferences} : ${preferences}`);
     }
-    lines.push("Merci de confirmer la disponibilité.");
+    lines.push(b.messageOutro);
     return lines.join("\n");
   };
 
@@ -33,9 +50,9 @@
   };
 
   const formatDate = (value) => {
-    if (!value) return "À préciser";
+    if (!value) return b.fallbackDate;
     try {
-      return new Intl.DateTimeFormat("fr-FR", {
+      return new Intl.DateTimeFormat(i18n.locale, {
         day: "numeric",
         month: "long",
         year: "numeric"
@@ -69,14 +86,14 @@
     }
 
     const updateSummary = () => {
-      const formula = getFormula(formulaSelect.value);
+      const formula = getLocalFormula(formulaSelect.value);
       const summaryFormula = document.querySelector("[data-summary-formula]");
       const summaryDuration = document.querySelector("[data-summary-duration]");
       const summaryPrice = document.querySelector("[data-summary-price]");
       const summaryDate = document.querySelector("[data-summary-date]");
 
-      if (summaryFormula) summaryFormula.textContent = formula?.name || "Choisissez une formule";
-      if (summaryDuration) summaryDuration.textContent = formula?.duration || "Sélectionnez la formule souhaitée";
+      if (summaryFormula) summaryFormula.textContent = formula?.name || b.summaryEmptyFormula;
+      if (summaryDuration) summaryDuration.textContent = formula?.duration || b.summaryEmptyDuration;
       if (summaryPrice) summaryPrice.textContent = formula?.price || "—";
       if (summaryDate) summaryDate.textContent = formatDate(dateInput.value);
     };
@@ -91,17 +108,17 @@
     const validate = () => {
       let valid = true;
       if (!getFormula(formulaSelect.value)) {
-        setError(formulaSelect, "Veuillez choisir une formule.");
+        setError(formulaSelect, b.errorFormula);
         valid = false;
       } else setError(formulaSelect, "");
 
       if (!dateInput.value || dateInput.value < localToday) {
-        setError(dateInput, "Veuillez choisir une date d’arrivée à partir d’aujourd’hui.");
+        setError(dateInput, b.errorDate);
         valid = false;
       } else setError(dateInput, "");
 
       if (!nameInput.value || nameInput.value.trim().length < 2) {
-        setError(nameInput, "Veuillez indiquer votre nom complet.");
+        setError(nameInput, b.errorName);
         valid = false;
       } else setError(nameInput, "");
 
@@ -132,7 +149,7 @@
         fallback.hidden = false;
       }
       if (status) {
-        status.textContent = "Votre demande est prête. Envoyez-la sur WhatsApp pour que l’établissement confirme la disponibilité.";
+        status.textContent = b.status;
       }
       window.open(url, "_blank", "noopener,noreferrer");
     });
@@ -140,5 +157,14 @@
     updateSummary();
   };
 
-  window.MajesticBooking = { buildMessage, createWhatsAppUrl, hydrateLinks, initBookingForm, getFormula, formatDate };
+  window.MajesticBooking = {
+    buildMessage,
+    createWhatsAppUrl,
+    hydrateLinks,
+    initBookingForm,
+    getFormula,
+    getLocalFormula,
+    localizeFormula,
+    formatDate
+  };
 })();
