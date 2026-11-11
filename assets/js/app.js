@@ -2,29 +2,25 @@
   const config = window.MAJESTIC_CONFIG;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const recordingMode = document.body.dataset.page === "home" && new URLSearchParams(window.location.search).get("rec") === "1" && !reducedMotion.matches;
-
-  // Theme Management (Dark by default)
-  const initTheme = () => {
-    const savedTheme = localStorage.getItem("majestic-theme");
-    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = savedTheme || (systemPrefersDark ? "dark" : "dark"); // Default dark as requested
-    document.documentElement.setAttribute("data-theme", theme);
-  };
-  initTheme();
+  const siteRoot = config.siteRoot || "";
+  const imgRoot = config.imgRoot || "/assets/images";
 
   const toggleTheme = () => {
-    const current = document.documentElement.getAttribute("data-theme") || "dark";
+    const current = document.documentElement.dataset.theme || "light";
     const next = current === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("majestic-theme", next);
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem("majestic-theme", next);
+    } catch {}
     updateThemeControls(next);
   };
 
   const updateThemeControls = (theme) => {
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#121110" : "#F8F5EF");
     document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
-      button.setAttribute("aria-label", `Switch to ${theme === "dark" ? "light" : "dark"} theme`);
+      button.setAttribute("aria-label", `Passer au thème ${theme === "dark" ? "clair" : "sombre"}`);
       const text = button.querySelector(".theme-label");
-      if (text) text.textContent = theme === "dark" ? "LIGHT THEME" : "DARK THEME";
+      if (text) text.textContent = theme === "dark" ? "THÈME CLAIR" : "THÈME SOMBRE";
     });
   };
 
@@ -55,54 +51,53 @@
   const icon = (name, className = "") => `<svg class="icon ${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${paths[name] || paths["arrow-right"]}</svg>`;
 
   const navigation = [
-    ["home", "Home", "/"],
-    ["rooms", "Rooms", "/rooms/"],
-    ["services", "Services", "/services/"],
-    ["gallery", "Gallery", "/gallery/"],
-    ["contact", "Contact", "/contact/"]
+    ["home", "Accueil", `${siteRoot}/`],
+    ["rooms", "Chambres", `${siteRoot}/rooms/`],
+    ["services", "Services", `${siteRoot}/services/`],
+    ["gallery", "Galerie", `${siteRoot}/gallery/`],
+    ["contact", "Contact", `${siteRoot}/contact/`]
   ];
 
   const renderHeader = () => {
     const mount = document.querySelector("[data-site-header]");
     if (!mount) return;
     const page = document.body.dataset.page;
-    const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
+    const currentTheme = document.documentElement.dataset.theme || "light";
     mount.innerHTML = `
       <header class="site-header" data-header>
-        <button class="header__menu" type="button" data-menu-open aria-haspopup="dialog" aria-label="Open menu">
+        <button class="header__menu" type="button" data-menu-open aria-haspopup="dialog" aria-label="Ouvrir le menu">
           ${icon("menu")}<span>MENU</span>
         </button>
-        <a class="header__logo" href="/" aria-label="Majestic Residence Hotel — Home">
-          <img src="/assets/images/logo-majestic.png" width="560" height="560" alt="Majestic Residence Hotel" fetchpriority="high">
+        <a class="header__logo" href="${siteRoot}/" aria-label="Majestic Residence Hotel — Accueil">
+          <img src="${imgRoot}/logo-majestic.png" width="560" height="560" alt="Majestic Residence Hotel" fetchpriority="high">
         </a>
-        <a class="header__booking" href="/booking/" aria-label="Book a stay"><span>BOOK</span>${icon("arrow-up-right")}</a>
+        <a class="header__booking" href="${siteRoot}/booking/" aria-label="Demander une réservation"><span>RÉSERVER</span>${icon("arrow-up-right")}</a>
       </header>
-      <dialog class="menu-overlay" data-menu aria-label="Main navigation">
+      <dialog class="menu-overlay" data-menu aria-label="Navigation principale">
         <div class="menu-overlay__top">
           <span class="label">MAJESTIC RESIDENCE HOTEL</span>
-          <button class="menu-overlay__close" type="button" data-menu-close aria-label="Close menu">${icon("x")}<span>CLOSE</span></button>
+          <button class="menu-overlay__close" type="button" data-menu-close aria-label="Fermer le menu">${icon("x")}<span>FERMER</span></button>
         </div>
-        <nav class="menu-overlay__nav" aria-label="Website sections">
+        <nav class="menu-overlay__nav" aria-label="Rubriques du site">
           ${navigation.map(([id, label, href], index) => `<a href="${href}" ${page === id ? 'aria-current="page"' : ""}><span>0${index + 1}</span>${label}${icon("arrow-up-right")}</a>`).join("")}
         </nav>
         <div class="menu-overlay__settings">
           <div class="menu-overlay__switch-group">
-            <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark/light theme">
-              ${icon("sun", "theme-toggle__sun")}${icon("moon", "theme-toggle__moon")}<span class="theme-label">${currentTheme === "dark" ? "LIGHT THEME" : "DARK THEME"}</span>
+            <button type="button" class="theme-toggle" data-theme-toggle>
+              ${icon("sun", "theme-toggle__sun")}${icon("moon", "theme-toggle__moon")}<span class="theme-label"></span>
             </button>
-            <div class="lang-switch" role="group" aria-label="Language selection">
-              <span class="lang-switch__item is-active" aria-current="true">EN</span>
-              <span class="lang-switch__divider" aria-hidden="true">/</span>
-              <span class="lang-switch__item is-disabled" title="French version coming soon">FR <small>SOON</small></span>
+            <div class="lang-switch">
+              <span class="lang-switch__item is-active" aria-label="Français">FR</span>
             </div>
           </div>
         </div>
         <div class="menu-overlay__bottom">
           <p>${config.location}</p>
-          <a class="button button--gold" href="/booking/">REQUEST A BOOKING ${icon("arrow-right")}</a>
+          <a class="button button--gold" href="${siteRoot}/booking/">DEMANDE DE RÉSERVATION ${icon("arrow-right")}</a>
         </div>
       </dialog>`;
 
+    updateThemeControls(currentTheme);
     document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
       btn.addEventListener("click", toggleTheme);
     });
@@ -115,23 +110,23 @@
       <footer class="site-footer">
         <div class="site-footer__main container">
           <div class="site-footer__brand">
-            <a href="/" aria-label="Majestic Residence Hotel — Home"><img src="/assets/images/logo-majestic.png" width="560" height="560" loading="lazy" alt="Majestic Residence Hotel"></a>
-            <p>Elegant stays,<br>restful moments.</p>
+            <a href="${siteRoot}/" aria-label="Majestic Residence Hotel — Accueil"><img src="${imgRoot}/logo-majestic.png" width="560" height="560" loading="lazy" alt="Majestic Residence Hotel"></a>
+            <p>Des séjours élégants,<br>des instants paisibles.</p>
           </div>
           <div class="site-footer__column">
-            <span class="label">CONTACT US</span>
+            <span class="label">CONTACTEZ-NOUS</span>
             <a href="tel:${config.phonePrimaryHref}">${config.phonePrimary}</a>
             <a href="https://wa.me/${config.WHATSAPP_NUMBER}" data-whatsapp>WhatsApp</a>
             <a href="${config.facebook}" target="_blank" rel="noopener noreferrer">Facebook ${icon("arrow-up-right")}</a>
           </div>
           <div class="site-footer__column">
-            <span class="label">LOCATION</span>
+            <span class="label">ADRESSE</span>
             <p>Bonoua<br>Côte d’Ivoire</p>
           </div>
-          <nav class="site-footer__column" aria-label="Footer navigation">
+          <nav class="site-footer__column" aria-label="Navigation de pied de page">
             <span class="label">NAVIGATION</span>
             ${navigation.map(([, label, href]) => `<a href="${href}">${label}</a>`).join("")}
-            <a href="/booking/">Booking</a>
+            <a href="${siteRoot}/booking/">Demande de réservation</a>
           </nav>
         </div>
         <div class="site-footer__bottom container">
@@ -144,11 +139,11 @@
   const renderFormulas = () => {
     document.querySelectorAll("[data-formulas]").forEach((table) => {
       table.innerHTML = config.formulas.map((formula) => `
-        <a class="formula-row" href="/booking/?stay=${formula.id}" data-book-formula="${formula.id}" aria-label="Inquire about ${formula.name}, ${formula.duration}, ${formula.price} on WhatsApp">
+        <a class="formula-row" href="${siteRoot}/booking/?stay=${formula.id}" data-book-formula="${formula.id}" aria-label="Demander la formule ${formula.name}, ${formula.duration}, ${formula.price} sur WhatsApp">
           <span class="formula-row__name">${formula.name}</span>
           <span class="formula-row__duration">${formula.duration}</span>
           <strong class="formula-row__price">${formula.price}</strong>
-          <span class="formula-row__action">BOOK ${icon("arrow-up-right")}</span>
+          <span class="formula-row__action">RÉSERVER ${icon("arrow-up-right")}</span>
         </a>`).join("");
     });
   };
@@ -238,10 +233,13 @@
         if (!entry.isIntersecting) return;
         const siblings = [...entry.target.parentElement.children].filter((child) => child.matches(imageSelector));
         const index = Math.max(0, siblings.indexOf(entry.target));
+        const image = entry.target.querySelector("img");
+        // A fully clipped image may not trigger native lazy loading.
+        if (image) image.loading = "eager";
         entry.target.style.setProperty("--reveal-delay", `${index * 90}ms`);
         entry.target.classList.add("is-visible");
-        const animated = [entry.target, entry.target.querySelector("img")].filter(Boolean);
-        animated.forEach((element) => { element.style.willChange = "transform, opacity, clip-path, filter"; });
+        const animated = [entry.target, image].filter(Boolean);
+        if (!reducedMotion.matches) animated.forEach((element) => { element.style.willChange = "transform, opacity, clip-path, filter"; });
         window.setTimeout(() => animated.forEach((element) => { element.style.willChange = ""; }), 1700 + index * 90);
         imageObserver.unobserve(entry.target);
       });
@@ -258,7 +256,7 @@
     link.className = "floating-whatsapp";
     link.dataset.whatsapp = "";
     link.href = `https://wa.me/${config.WHATSAPP_NUMBER}`;
-    link.setAttribute("aria-label", "Make a booking inquiry on WhatsApp");
+    link.setAttribute("aria-label", "Demander une réservation sur WhatsApp");
     link.innerHTML = icon("message-circle");
     document.body.append(link);
   };

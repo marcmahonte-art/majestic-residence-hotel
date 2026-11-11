@@ -6,18 +6,18 @@
 
   const buildMessage = ({ formulaId, date, name, preferences } = {}) => {
     const formula = getFormula(formulaId);
-    const formulaName = formula ? formula.name : "To be advised / À conseiller";
+    const formulaName = formula ? formula.name : "À conseiller";
     const lines = [
-      "Hello Majestic Residence Hotel / Bonjour,",
-      "I would like to make a booking / Je souhaite réserver.",
-      `Stay / Formule : ${formulaName}`,
-      `Date : ${date || "To be specified / À préciser"}`,
-      `Name / Nom : ${name || "To be specified / À préciser"}`
+      "Bonjour Majestic Residence Hotel,",
+      "Je souhaite faire une demande de réservation.",
+      `Formule : ${formulaName}`,
+      `Date : ${date || "À préciser"}`,
+      `Nom : ${name || "À préciser"}`
     ];
     if (preferences) {
-      lines.push(`Notes / Préférences : ${preferences}`);
+      lines.push(`Préférences : ${preferences}`);
     }
-    lines.push("Please confirm availability / Merci de confirmer la disponibilité.");
+    lines.push("Merci de confirmer la disponibilité.");
     return lines.join("\n");
   };
 
@@ -33,9 +33,9 @@
   };
 
   const formatDate = (value) => {
-    if (!value) return "To be specified";
+    if (!value) return "À préciser";
     try {
-      return new Intl.DateTimeFormat("en-US", {
+      return new Intl.DateTimeFormat("fr-FR", {
         day: "numeric",
         month: "long",
         year: "numeric"
@@ -75,8 +75,8 @@
       const summaryPrice = document.querySelector("[data-summary-price]");
       const summaryDate = document.querySelector("[data-summary-date]");
 
-      if (summaryFormula) summaryFormula.textContent = formula?.name || "Choose a stay";
-      if (summaryDuration) summaryDuration.textContent = formula?.duration || "Select your desired option";
+      if (summaryFormula) summaryFormula.textContent = formula?.name || "Choisissez une formule";
+      if (summaryDuration) summaryDuration.textContent = formula?.duration || "Sélectionnez la formule souhaitée";
       if (summaryPrice) summaryPrice.textContent = formula?.price || "—";
       if (summaryDate) summaryDate.textContent = formatDate(dateInput.value);
     };
@@ -91,17 +91,17 @@
     const validate = () => {
       let valid = true;
       if (!getFormula(formulaSelect.value)) {
-        setError(formulaSelect, "Please choose a stay option.");
+        setError(formulaSelect, "Veuillez choisir une formule.");
         valid = false;
       } else setError(formulaSelect, "");
 
       if (!dateInput.value || dateInput.value < localToday) {
-        setError(dateInput, "Please select an arrival date from today onwards.");
+        setError(dateInput, "Veuillez choisir une date d’arrivée à partir d’aujourd’hui.");
         valid = false;
       } else setError(dateInput, "");
 
       if (!nameInput.value || nameInput.value.trim().length < 2) {
-        setError(nameInput, "Please enter your full name.");
+        setError(nameInput, "Veuillez indiquer votre nom complet.");
         valid = false;
       } else setError(nameInput, "");
 
@@ -132,7 +132,7 @@
         fallback.hidden = false;
       }
       if (status) {
-        status.textContent = "Your booking request is ready. Sending to WhatsApp for team confirmation...";
+        status.textContent = "Votre demande est prête. Envoyez-la sur WhatsApp pour que l’établissement confirme la disponibilité.";
       }
       window.open(url, "_blank", "noopener,noreferrer");
     });

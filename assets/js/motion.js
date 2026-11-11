@@ -3,9 +3,10 @@
   const config = window.MAJESTIC_CONFIG;
   if (!ui || !config) return;
 
-  const reducedMotion = ui.reducedMotion.matches;
-  const recordingMode = ui.recordingMode;
-  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  let reducedMotion = ui.reducedMotion.matches;
+  let recordingMode = ui.recordingMode;
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const desktopGallery = window.matchMedia("(min-width: 761px) and (min-height: 720px)");
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   const saveData = Boolean(connection?.saveData || /(^|-)2g/.test(connection?.effectiveType || ""));
   const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
@@ -18,7 +19,6 @@
   const heroTitle = hero?.querySelector("[data-hero-title]");
   const heroLight = hero?.querySelector(".hero__light");
   const heroForeground = hero?.querySelector("[data-hero-foreground]");
-  const statement = document.querySelector(".statement");
   const dots = [...document.querySelectorAll(".photo-dot")];
   const parallaxFrames = [...document.querySelectorAll("[data-parallax]")];
   const badge = document.querySelector(".whatsapp-badge");
@@ -54,31 +54,27 @@
       const item = watched.get(entry.target);
       if (!item) return;
       item.visible = entry.isIntersecting;
-      setWillChange(item.targets, item.visible, item.properties);
+      setWillChange(item.targets, item.visible && !reducedMotion, item.properties);
     });
     start();
   });
-  visibilityObserver.observe(document.querySelector("main") || document.body);
-  watched.set(document.querySelector("main") || document.body, { visible: true, targets: [] });
-
   const watch = (element, targets = [], properties) => {
     if (!element || watched.has(element)) return;
     watched.set(element, { visible: false, targets, properties });
     visibilityObserver.observe(element);
   };
 
-  if (!reducedMotion) {
-    watch(hero, [heroMedia, heroImage, heroTitle, heroLight, heroForeground]);
-    watch(statement, dots.map((dot) => dot.querySelector("img")));
-    watch(badge, [badgeRing]);
-    watch(gallerySection, [galleryTrack]);
-    watch(bookingCta, [bookingBackground]);
-    parallaxFrames.forEach((frame) => watch(frame, [frame.querySelector("picture")]));
-  }
+  watch(hero, [heroMedia, heroImage, heroTitle, heroLight, heroForeground]);
+  dots.forEach((dot) => watch(dot, [dot.querySelector("img")]));
+  watch(badge, [badgeRing]);
+  watch(gallerySection, [galleryTrack]);
+  watch(bookingCta, [bookingBackground]);
+  parallaxFrames.forEach((frame) => watch(frame, [frame.querySelector("picture")]));
 
   const initHeroPointer = () => {
-    if (!hero || !finePointer || reducedMotion) return;
+    if (!hero) return;
     hero.addEventListener("pointermove", (event) => {
+      if (reducedMotion || !finePointer.matches) return;
       const rect = hero.getBoundingClientRect();
       pointer.targetX = clamp((event.clientX - rect.left) / rect.width * 2 - 1, -1, 1);
       pointer.targetY = clamp((event.clientY - rect.top) / rect.height * 2 - 1, -1, 1);
@@ -92,7 +88,7 @@
   };
 
   const updateHero = (timestamp) => {
-    if (!hero || (!anyVisible(hero) && !recordingMode)) return;
+    if (!hero || !anyVisible(hero)) return;
     pointer.x = lerp(pointer.x, pointer.targetX, 0.06);
     pointer.y = lerp(pointer.y, pointer.targetY, 0.06);
     const progress = clamp(smoothScroll / (window.innerHeight * 0.65));
@@ -116,12 +112,11 @@
   };
 
   const updateDots = (timestamp) => {
-    if (!statement || !anyVisible(statement)) return;
     dots.forEach((dot, index) => {
-      if (!dot.classList.contains("is-visible")) return;
+      if (!anyVisible(dot) || !dot.classList.contains("is-visible")) return;
       const phase = index * Math.PI * 0.75;
       const rect = dot.getBoundingClientRect();
-      const scrollPhase = clamp((window.innerHeight / 2 - rect.top - rect.height / 2) / window.innerHeight, -1, 1);
+      const scrollPhase = clamp((window.innerHeight / 2 - rect.top - (targetScroll - smoothScroll) - rect.height / 2) / window.innerHeight, -1, 1);
       dot.style.setProperty("--dot-x", `${Math.sin(timestamp / 14000 * Math.PI * 2 + phase) * 6}%`);
       dot.style.setProperty("--dot-y", `${Math.cos(timestamp / 14000 * Math.PI * 2 + phase) * 6}%`);
       dot.style.setProperty("--dot-rotate", `${Math.sin(timestamp / 14000 * Math.PI * 2 + phase) * 3}deg`);
@@ -133,7 +128,7 @@
     parallaxFrames.forEach((frame) => {
       if (!anyVisible(frame)) return;
       const rect = frame.getBoundingClientRect();
-      const progress = (window.innerHeight / 2 - rect.top - rect.height / 2) / window.innerHeight;
+      const progress = (window.innerHeight / 2 - rect.top - (targetScroll - smoothScroll) - rect.height / 2) / window.innerHeight;
       frame.style.setProperty("--parallax-y", `${clamp(progress * 12, -7, 7)}%`);
     });
   };
@@ -147,23 +142,26 @@
     if (!gallerySection || !galleryTrack || !galleryContainer) return;
     galleryItems = [...galleryTrack.querySelectorAll(".gallery-item")].map((element) => ({
       element,
-      picture: element.querySelector("picture")
+      picture: element.querySelector("picture"),
+      left: element.offsetLeft,
+      width: element.offsetWidth
     }));
     galleryMetrics = {
       top: gallerySection.offsetTop,
-      range: Math.max(1, gallerySection.offsetHeight - window.innerHeight),
-      distance: Math.max(0, galleryTrack.scrollWidth - galleryContainer.clientWidth)
+      range: Math.max(1, gallerySection.offsetHeight - gallerySection.querySelector(".gallery-scroll__sticky").offsetHeight),
+      distance: Math.max(0, galleryTrack.scrollWidth - galleryContainer.clientWidth),
+      left: galleryContainer.getBoundingClientRect().left
     };
   };
 
-  const updateGallery = () => {
-    if (!gallerySection || !galleryTrack || window.innerWidth <= 760 || !anyVisible(gallerySection)) return;
+  const updateGallery = (force = false) => {
+    if (!gallerySection || !galleryTrack || !desktopGallery.matches || reducedMotion || (!force && !anyVisible(gallerySection))) return;
     galleryProgress = clamp((smoothScroll - galleryMetrics.top) / galleryMetrics.range);
     galleryTrack.style.setProperty("--gallery-x", `${-galleryProgress * galleryMetrics.distance}px`);
-    galleryItems.forEach(({ element, picture }) => {
-      const rect = element.getBoundingClientRect();
-      if (rect.right < -100 || rect.left > window.innerWidth + 100) return;
-      const distance = clamp((rect.left + rect.width / 2 - window.innerWidth / 2) / (window.innerWidth / 2), -1, 1);
+    galleryItems.forEach(({ element, picture, left, width }) => {
+      const position = galleryMetrics.left + left - galleryProgress * galleryMetrics.distance;
+      if (position + width < -100 || position > window.innerWidth + 100) return;
+      const distance = clamp((position + width / 2 - window.innerWidth / 2) / (window.innerWidth / 2), -1, 1);
       const focus = 1 - Math.abs(distance);
       element.style.setProperty("--gallery-item-scale", (0.92 + focus * 0.08).toFixed(3));
       element.style.setProperty("--gallery-item-opacity", (0.75 + focus * 0.25).toFixed(3));
@@ -173,16 +171,17 @@
 
   const cursor = { active: false, x: -100, y: -100, targetX: -100, targetY: -100, scale: 0, element: null };
   const initGalleryCursor = () => {
-    if (!finePointer || reducedMotion || !document.querySelector("[data-gallery]")) return;
+    if (cursor.element || !finePointer.matches || reducedMotion || !document.querySelector("[data-gallery]")) return;
     const element = document.createElement("div");
     element.className = "gallery-cursor";
     element.setAttribute("aria-hidden", "true");
-    element.textContent = "VIEW";
+    element.textContent = "VOIR";
     document.body.append(element);
     document.body.classList.add("has-gallery-cursor");
     cursor.element = element;
     document.querySelectorAll(".gallery-item__button").forEach((button) => {
       button.addEventListener("pointerenter", (event) => {
+        if (reducedMotion || !finePointer.matches) return;
         cursor.active = true;
         cursor.targetX = event.clientX;
         cursor.targetY = event.clientY;
@@ -206,7 +205,7 @@
   };
 
   const updateCursor = () => {
-    if (!cursor.element) return;
+    if (!cursor.element || (!cursor.active && cursor.scale < 0.01)) return;
     cursor.x = lerp(cursor.x, cursor.targetX, 0.15);
     cursor.y = lerp(cursor.y, cursor.targetY, 0.15);
     cursor.scale = lerp(cursor.scale, cursor.active ? 1 : 0, 0.15);
@@ -228,42 +227,46 @@
     until: 0,
     token: 0,
     element: null,
-    image: null
+    image: null,
+    images: []
   };
 
-  const changePreviewImage = (id) => {
+  const changePreviewImage = async (id) => {
     const media = config.MEDIA.formules?.[id];
     if (!media || preview.formula === id) return;
-    const firstLoad = !preview.formula;
     preview.formula = id;
-    preview.image.alt = media.alt;
-    if (firstLoad || reducedMotion) {
-      preview.image.src = `${media.base}-800.webp`;
+    const token = ++preview.token;
+    const next = preview.images.find((image) => image !== preview.image);
+    next.src = `${media.base}-800.webp`;
+    next.alt = media.alt;
+    try {
+      await next.decode();
+    } catch {
+      if (token === preview.token) preview.formula = "";
       return;
     }
-    const token = ++preview.token;
-    preview.image.getAnimations().forEach((animation) => animation.cancel());
-    preview.image.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 150, fill: "forwards" }).finished.then(() => {
-      if (token !== preview.token) return;
-      preview.image.src = `${media.base}-800.webp`;
-      return preview.image.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150, fill: "forwards" }).finished;
-    }).catch(() => {});
+    if (token !== preview.token || !preview.active || reducedMotion) return;
+    preview.image?.classList.remove("is-current");
+    next.classList.add("is-current");
+    preview.image = next;
+    preview.element.classList.add("is-active");
   };
 
   const initFormulaPreview = () => {
     const tables = [...document.querySelectorAll(".formula-table")];
-    if (!finePointer || reducedMotion || !tables.length || !config.MEDIA.formules) return;
+    if (preview.element || !finePointer.matches || reducedMotion || !tables.length || !config.MEDIA.formules) return;
     const element = document.createElement("div");
     element.className = "formula-preview";
     element.setAttribute("aria-hidden", "true");
-    element.innerHTML = '<div class="formula-preview__frame"><img alt="" width="800" height="1000"></div>';
+    element.innerHTML = '<div class="formula-preview__frame"><img alt="" width="800" height="1000"><img alt="" width="800" height="1000"></div>';
     document.body.append(element);
     preview.element = element;
-    preview.image = element.querySelector("img");
+    preview.images = [...element.querySelectorAll("img")];
 
     tables.forEach((table) => {
       table.querySelectorAll("[data-book-formula]").forEach((row) => {
         row.addEventListener("pointerenter", (event) => {
+          if (reducedMotion || !finePointer.matches) return;
           preview.active = true;
           preview.targetX = clamp(event.clientX + 28, 20, window.innerWidth - 260);
           preview.targetY = clamp(event.clientY - 120, 90, window.innerHeight - 320);
@@ -272,12 +275,13 @@
             preview.y = preview.targetY;
           }
           preview.lastClientX = event.clientX;
-          element.classList.add("is-active");
-          setWillChange([element, preview.image], true);
+          if (preview.image) element.classList.add("is-active");
+          setWillChange([element, ...preview.images], true);
           changePreviewImage(row.dataset.bookFormula);
           start();
         });
         row.addEventListener("pointermove", (event) => {
+          if (reducedMotion || !finePointer.matches) return;
           const velocity = event.clientX - preview.lastClientX;
           preview.lastClientX = event.clientX;
           preview.targetX = clamp(event.clientX + 28, 20, window.innerWidth - 260);
@@ -289,6 +293,8 @@
       });
       table.addEventListener("pointerleave", () => {
         preview.active = false;
+        preview.formula = "";
+        preview.token += 1;
         preview.targetRotation = 0;
         preview.until = time() + 500;
         element.classList.remove("is-active");
@@ -299,17 +305,20 @@
 
   const updatePreview = () => {
     if (!preview.element) return;
+    if (!preview.active && time() > preview.until) {
+      setWillChange([preview.element, ...preview.images], false);
+      return;
+    }
     preview.x = lerp(preview.x, preview.targetX, 0.1);
     preview.y = lerp(preview.y, preview.targetY, 0.1);
     preview.rotation = lerp(preview.rotation, preview.targetRotation, 0.1);
     preview.targetRotation = lerp(preview.targetRotation, 0, 0.08);
     preview.element.style.transform = `translate3d(${preview.x}px, ${preview.y}px, 0) rotate(${preview.rotation}deg)`;
-    if (!preview.active && time() > preview.until) setWillChange([preview.element, preview.image], false);
   };
 
   const fireflies = [];
   const initFireflies = () => {
-    if (!bookingCta || reducedMotion) return;
+    if (!bookingCta || reducedMotion || fireflies.length) return;
     const layer = document.createElement("div");
     layer.className = "booking-cta__fireflies";
     layer.setAttribute("aria-hidden", "true");
@@ -363,8 +372,7 @@
 
   const hasWork = () => {
     if (recordingMode) return true;
-    if ([hero, statement, badge, gallerySection, bookingCta].some(anyVisible)) return true;
-    if (parallaxFrames.some(anyVisible)) return true;
+    if ([hero, badge, bookingCta, ...dots].some(anyVisible)) return true;
     if (cursor.active || cursor.scale > 0.01) return true;
     if (preview.active || time() < preview.until) return true;
     return Math.abs(targetScroll - smoothScroll) > 0.1;
@@ -372,11 +380,14 @@
 
   const tick = () => {
     frameId = 0;
+    if (reducedMotion) return;
     if (recordingMain) {
       const matrix = new DOMMatrixReadOnly(getComputedStyle(recordingMain).transform);
       targetScroll = -matrix.m42;
+      smoothScroll = targetScroll;
+    } else {
+      smoothScroll = Math.abs(targetScroll - smoothScroll) < 0.1 ? targetScroll : lerp(smoothScroll, targetScroll, 0.1);
     }
-    smoothScroll = Math.abs(targetScroll - smoothScroll) < 0.1 ? targetScroll : lerp(smoothScroll, targetScroll, 0.1);
     const timestamp = time();
     updateHero(timestamp);
     updateDots(timestamp);
@@ -397,8 +408,76 @@
   const refresh = () => {
     targetScroll = recordingMode ? targetScroll : window.scrollY;
     refreshGallery();
+    if (galleryTrack && (!desktopGallery.matches || reducedMotion)) {
+      galleryTrack.style.removeProperty("--gallery-x");
+    }
     start();
   };
+
+  galleryTrack?.addEventListener("focusin", (event) => {
+    const item = event.target.closest(".gallery-item");
+    if (!item) return;
+    item.classList.add("is-visible");
+    if (reducedMotion || !desktopGallery.matches || !galleryMetrics.distance) return;
+    const metrics = galleryItems.find((entry) => entry.element === item);
+    const progress = clamp((metrics.left + metrics.width / 2 - galleryContainer.clientWidth / 2) / galleryMetrics.distance);
+    gallerySection.querySelector(".gallery-scroll__sticky").scrollLeft = 0;
+    galleryTrack.scrollLeft = 0;
+    smoothScroll = targetScroll = galleryMetrics.top + progress * galleryMetrics.range;
+    window.scrollTo({ top: targetScroll, behavior: "instant" });
+    updateGallery(true);
+    start();
+  });
+
+  const suspendMotion = () => {
+    cancelAnimationFrame(frameId);
+    frameId = 0;
+    watched.forEach((item) => setWillChange(item.targets, false));
+    setWillChange([cursor.element, preview.element, ...preview.images], false);
+  };
+
+  ui.reducedMotion.addEventListener("change", (event) => {
+    reducedMotion = event.matches;
+    if (reducedMotion) {
+      suspendMotion();
+      document.querySelectorAll("[data-reveal], [data-split], .photo-dot, .formula-row").forEach((element) => {
+        element.classList.add("is-visible");
+        element.style.willChange = "";
+        element.querySelectorAll("img").forEach((image) => { image.style.willChange = ""; });
+      });
+      document.getAnimations().forEach((animation) => animation.cancel());
+      recordingMain = null;
+      recordingMode = false;
+      document.body.classList.remove("is-recording", "has-gallery-cursor");
+      cursor.active = false;
+      cursor.scale = 0;
+      preview.active = false;
+      preview.formula = "";
+      preview.until = 0;
+      preview.token += 1;
+      preview.element?.classList.remove("is-active");
+    } else {
+      initGalleryCursor();
+      initFormulaPreview();
+      initFireflies();
+      document.body.classList.toggle("has-gallery-cursor", Boolean(cursor.element) && finePointer.matches);
+      watched.forEach((item) => setWillChange(item.targets, item.visible, item.properties));
+    }
+    smoothScroll = targetScroll = window.scrollY;
+    refresh();
+  });
+  finePointer.addEventListener("change", () => {
+    if (finePointer.matches && !reducedMotion) {
+      initGalleryCursor();
+      initFormulaPreview();
+    }
+    pointer.targetX = pointer.targetY = 0;
+    cursor.active = false;
+    preview.active = false;
+    preview.element?.classList.remove("is-active");
+    document.body.classList.toggle("has-gallery-cursor", Boolean(cursor.element) && finePointer.matches && !reducedMotion);
+    start();
+  });
 
   window.addEventListener("scroll", () => {
     if (!recordingMode) targetScroll = window.scrollY;
@@ -408,10 +487,10 @@
   window.addEventListener("load", refresh, { once: true });
   document.fonts?.ready.then(refresh);
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden && frameId) {
-      cancelAnimationFrame(frameId);
-      frameId = 0;
+    if (document.hidden) {
+      suspendMotion();
     } else {
+      watched.forEach((item) => setWillChange(item.targets, item.visible && !reducedMotion, item.properties));
       start();
     }
   });

@@ -12,15 +12,15 @@
   const createDialog = () => {
     const dialog = document.createElement("dialog");
     dialog.className = "lightbox";
-    dialog.setAttribute("aria-label", "Full screen photo viewer");
+    dialog.setAttribute("aria-label", "Visionneuse de photos en plein écran");
     dialog.innerHTML = `
-      <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close photo viewer">${window.MajesticUI.icon("x")}</button>
-      <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Previous photo">${window.MajesticUI.icon("chevron-left")}</button>
+      <button class="lightbox__close" type="button" data-lightbox-close aria-label="Fermer la photo">${window.MajesticUI.icon("x")}</button>
+      <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Photo précédente">${window.MajesticUI.icon("chevron-left")}</button>
       <figure class="lightbox__figure">
         <img data-lightbox-image alt="" width="1600" height="1200">
         <figcaption><span data-lightbox-category></span><strong data-lightbox-title></strong><span data-lightbox-count></span></figcaption>
       </figure>
-      <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Next photo">${window.MajesticUI.icon("chevron-right")}</button>`;
+      <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Photo suivante">${window.MajesticUI.icon("chevron-right")}</button>`;
     document.body.append(dialog);
     return dialog;
   };
@@ -33,9 +33,20 @@
   let activeItems = [];
   let activeIndex = 0;
   let activeSource = null;
+  let activeTransition = null;
   let touchStartX = 0;
 
+  const stopAnimations = () => {
+    const transition = activeTransition;
+    activeTransition = null;
+    if (transition) transition.skipTransition();
+    if (activeSource) activeSource.style.viewTransitionName = "";
+    dialogImage.style.viewTransitionName = "";
+    dialogImage.getAnimations().forEach((animation) => animation.cancel());
+  };
+
   const showImage = (index, animate = false) => {
+    stopAnimations();
     activeIndex = (index + activeItems.length) % activeItems.length;
     const item = activeItems[activeIndex];
     dialogImage.src = `${item.base}-1600.webp`;
@@ -52,55 +63,84 @@
   };
 
   const flipOpen = () => {
-    if (!activeSource || window.MajesticUI.reducedMotion.matches) return;
+    if (!dialog.open || !activeSource || window.MajesticUI.reducedMotion.matches) return;
     const first = activeSource.getBoundingClientRect();
     const last = dialogImage.getBoundingClientRect();
-    if (!first.width || !last.width) return;
+    if (!first.width || !first.height || !last.width || !last.height) return;
     dialogImage.animate([
       {
         opacity: 0.65,
+        transformOrigin: "top left",
         transform: `translate(${first.left - last.left}px, ${first.top - last.top}px) scale(${first.width / last.width}, ${first.height / last.height})`
       },
-      { opacity: 1, transform: "translate(0, 0) scale(1)" }
+      { opacity: 1, transformOrigin: "top left", transform: "translate(0, 0) scale(1)" }
     ], { duration: 500, easing: "cubic-bezier(.22,1,.36,1)" });
   };
 
   const openDialog = (items, index, source) => {
     activeItems = items;
+    showImage(index);
     activeSource = source;
-    const update = () => {
-      showImage(index);
-      dialog.showModal();
+    const reveal = () => {
+      if (!dialog.open) dialog.showModal();
       document.body.classList.add("lightbox-open");
     };
     if (document.startViewTransition && !window.MajesticUI.reducedMotion.matches) {
       source.style.viewTransitionName = "majestic-gallery-image";
-      const transition = document.startViewTransition(() => {
-        update();
-        dialogImage.style.viewTransitionName = "majestic-gallery-image";
-      });
-      transition.finished.finally(() => {
-        source.style.viewTransitionName = "";
-        dialogImage.style.viewTransitionName = "";
-      });
-      return;
+      try {
+        const transition = document.startViewTransition(() => {
+          if (activeTransition !== transition) return;
+          source.style.viewTransitionName = "";
+          reveal();
+          dialogImage.style.viewTransitionName = "majestic-gallery-image";
+        });
+        activeTransition = transition;
+        const cleanup = () => {
+          if (activeTransition !== transition) return;
+          activeTransition = null;
+          source.style.viewTransitionName = "";
+          dialogImage.style.viewTransitionName = "";
+        };
+        transition.ready.then(undefined, () => {
+          if (activeTransition !== transition) return;
+          stopAnimations();
+          reveal();
+          flipOpen();
+        });
+        transition.finished.then(cleanup, cleanup);
+        return;
+      } catch {
+        stopAnimations();
+      }
     }
-    update();
+    reveal();
     flipOpen();
   };
 
   const closeDialog = () => {
+    stopAnimations();
     dialog.close();
     document.body.classList.remove("lightbox-open");
     activeSource = null;
   };
 
+  window.MajesticUI.reducedMotion.addEventListener("change", (event) => {
+    if (event.matches) stopAnimations();
+  });
+
   dialog.querySelector("[data-lightbox-close]").addEventListener("click", closeDialog);
   dialog.querySelector("[data-lightbox-prev]").addEventListener("click", () => showImage(activeIndex - 1, true));
   dialog.querySelector("[data-lightbox-next]").addEventListener("click", () => showImage(activeIndex + 1, true));
+  dialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closeDialog();
+  });
   dialog.addEventListener("close", () => {
+    // A queued close event can arrive after a new opening.
+    if (dialog.open) return;
+    stopAnimations();
     document.body.classList.remove("lightbox-open");
-    dialogImage.style.viewTransitionName = "";
+    activeSource = null;
   });
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog) closeDialog();
@@ -120,7 +160,7 @@
     const items = keys.map((key) => config.MEDIA[key]);
     gallery.innerHTML = items.map((item, index) => `
       <figure class="gallery-item" data-category="${item.category}" data-reveal="fade">
-        <button type="button" class="gallery-item__button" data-gallery-index="${index}" aria-label="Enlarge photograph: ${item.title}">
+        <button type="button" class="gallery-item__button" data-gallery-index="${index}" aria-label="Agrandir la photo : ${item.title}">
           ${picture(item, gallery.dataset.gallery === "preview" && index === 0)}
           <span class="gallery-item__expand" aria-hidden="true">${window.MajesticUI.icon("expand")}</span>
         </button>
@@ -142,7 +182,7 @@
 
     const filters = document.querySelector("[data-gallery-filters]");
     if (filters && gallery.dataset.gallery === "full") {
-      const categories = ["All", ...new Set(items.map((item) => item.category))];
+      const categories = ["Toutes", ...new Set(items.map((item) => item.category))];
       filters.innerHTML = categories.map((category, index) => `
         <button type="button" class="filter-button${index === 0 ? " is-active" : ""}" data-filter="${category}" aria-pressed="${index === 0}">${category}</button>`).join("");
       filters.addEventListener("click", (event) => {
@@ -154,7 +194,7 @@
         });
         const category = button.dataset.filter;
         gallery.querySelectorAll(".gallery-item").forEach((item) => {
-          item.hidden = category !== "All" && item.dataset.category !== category;
+          item.hidden = category !== "Toutes" && item.dataset.category !== category;
         });
       });
     }

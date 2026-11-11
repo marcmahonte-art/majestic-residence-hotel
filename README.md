@@ -94,3 +94,4 @@ npx serve .
 ---
 
 © 2026 Majestic Residence Hotel. All rights reserved.
+
