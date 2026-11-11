@@ -1,0 +1,365 @@
+
+/* ==========================================================================
+   MOTION DESIGN TOKENS & RULES (Preserving Original Light Palette)
+   ========================================================================== */
+:root {
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --dur-hover: 900ms;
+  --dur-reveal: 1400ms;
+  --dur-ambient: 22s;
+}
+
+/* 1. Hero Living Image */
+.hero {
+  --hero-photo-y: 0px;
+  --hero-title-y: 0px;
+  --hero-pointer-x: 0px;
+  --hero-pointer-y: 0px;
+  --hero-title-pointer-x: 0px;
+  --hero-title-pointer-y: 0px;
+  --hero-breath: 1;
+}
+.hero__media {
+  filter: blur(var(--hero-blur, 0px));
+  transform: translate3d(var(--hero-pointer-x), calc(var(--hero-photo-y) + var(--hero-pointer-y)), 0);
+  will-change: transform;
+}
+.hero__media img {
+  transform: scale(var(--hero-breath));
+  will-change: transform;
+}
+.hero__light {
+  position: absolute;
+  inset: -25% -35%;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgb(217 182 111 / .10), transparent 48%);
+  mix-blend-mode: soft-light;
+  transform: translate3d(var(--hero-light-x, -22%), 0, 0);
+}
+.hero h1 {
+  transform: translate3d(var(--hero-title-pointer-x), calc(var(--hero-title-y) + var(--hero-title-pointer-y)), 0);
+}
+.hero__foreground {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+}
+
+/* 2. Photo Dots (Statement section) */
+.photo-dot {
+  transition: opacity 300ms, transform 800ms var(--ease-spring), width var(--dur-hover) var(--ease-out);
+}
+.photo-dot__inner {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.5);
+  transition: transform var(--dur-reveal) var(--ease-out);
+}
+.photo-dot.is-visible .photo-dot__inner {
+  transform: scale(1.15);
+}
+.photo-dot img {
+  width: 112%;
+  max-width: none;
+  height: 112%;
+  margin: -6%;
+  object-fit: cover;
+  transform: translate3d(var(--dot-x, 0%), calc(var(--dot-y, 0%) + var(--dot-scroll, 0%)), 0) rotate(var(--dot-rotate, 0deg));
+}
+.photo-dot:hover {
+  width: 1.4em;
+}
+.photo-dot:hover .photo-dot__inner {
+  transform: scale(1);
+  transition-duration: var(--dur-hover);
+}
+
+/* 3. Image Reveals (Curtain, Window, Fade) */
+[data-reveal="rideau"], [data-reveal="curtain"],
+[data-reveal="fenetre"], [data-reveal="window"],
+[data-reveal="fondu"], [data-reveal="fade"] {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal="rideau"], [data-reveal="curtain"] {
+  position: relative;
+  overflow: hidden;
+}
+[data-reveal="rideau"]::after, [data-reveal="curtain"]::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+  background: var(--paper-deep);
+  clip-path: inset(0);
+  transition: clip-path var(--dur-reveal) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal="rideau"] img, [data-reveal="curtain"] img {
+  clip-path: inset(100% 0 0);
+  transform: scale(1.25);
+  transition: transform var(--dur-reveal) var(--ease-out), clip-path var(--dur-reveal) var(--ease-out);
+  transition-delay: calc(var(--reveal-delay, 0ms) + 120ms);
+}
+[data-reveal="rideau"].is-visible::after, [data-reveal="curtain"].is-visible::after {
+  clip-path: inset(0 0 100%);
+}
+[data-reveal="rideau"].is-visible img, [data-reveal="curtain"].is-visible img {
+  clip-path: inset(0);
+  transform: scale(1);
+}
+
+[data-reveal="fenetre"], [data-reveal="window"] {
+  clip-path: inset(18% round 8px);
+  transition: clip-path var(--dur-reveal) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal="fenetre"] img, [data-reveal="window"] img {
+  transform: scale(1.15);
+  transition: transform var(--dur-reveal) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal="fenetre"].is-visible, [data-reveal="window"].is-visible {
+  clip-path: inset(0 round 8px);
+}
+[data-reveal="fenetre"].is-visible img, [data-reveal="window"].is-visible img {
+  transform: scale(1);
+}
+
+[data-reveal="fondu"] img, [data-reveal="fade"] img {
+  opacity: 0;
+  filter: blur(12px);
+  transform: scale(1.06);
+  transition: opacity var(--dur-reveal) var(--ease-out), filter var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal="fondu"].is-visible img, [data-reveal="fade"].is-visible img {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* 4. Formulas Portrait Hover */
+.formulas__portrait:hover img {
+  transform: scale(1.05);
+  filter: saturate(1.08) brightness(1.03);
+  transition: transform 1.6s var(--ease-out), filter 1.6s var(--ease-out);
+}
+
+/* 5. Floating Formula Preview */
+.formula-preview {
+  position: fixed;
+  z-index: 80;
+  top: 0;
+  left: 0;
+  width: 240px;
+  aspect-ratio: 4 / 5;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-300px, -300px, 0) rotate(0deg);
+  transition: opacity 300ms;
+}
+.formula-preview__frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--gold);
+  overflow: hidden;
+  clip-path: inset(100% 0 0);
+  transform: scale(.9);
+  transition: clip-path 400ms var(--ease-out), transform 500ms var(--ease-out);
+}
+.formula-preview.is-active {
+  opacity: 1;
+}
+.formula-preview.is-active .formula-preview__frame {
+  clip-path: inset(0);
+  transform: scale(1);
+}
+.formula-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 6. Gallery Horizontal Scroll & Preview */
+.gallery-scroll {
+  height: 300vh;
+  padding: 0;
+}
+.gallery-scroll__sticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100svh;
+  min-height: 720px;
+  align-items: center;
+  overflow: hidden;
+}
+.gallery-scroll__sticky > .container {
+  width: min(100% - (var(--gutter) * 2), var(--container));
+}
+.gallery-scroll .section-heading {
+  margin-bottom: 34px;
+}
+.gallery-grid--preview {
+  display: flex;
+  width: max-content;
+  gap: 28px;
+  transform: translate3d(var(--gallery-x, 0px), 0, 0);
+}
+.gallery-grid--preview .gallery-item {
+  flex: 0 0 min(54vw, 700px);
+  width: min(54vw, 700px);
+  height: clamp(340px, 52vh, 540px);
+  opacity: var(--gallery-item-opacity, .75);
+  transform: scale(var(--gallery-item-scale, .92));
+  transition: opacity 500ms var(--ease-out), transform 700ms var(--ease-out);
+}
+.gallery-grid--preview .gallery-item:nth-child(even) {
+  flex-basis: min(38vw, 490px);
+  width: min(38vw, 490px);
+}
+.gallery-grid--preview .gallery-item__button {
+  height: 100%;
+}
+.gallery-grid--preview .gallery-item__button img {
+  transform: translate3d(var(--item-parallax, 0%), 0, 0) scale(1.08);
+  transition: transform 300ms var(--ease-out);
+}
+
+/* Gallery Cursor */
+.gallery-cursor {
+  position: fixed;
+  z-index: 130;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 84px;
+  height: 84px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  pointer-events: none;
+  opacity: 0;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  box-shadow: 0 8px 24px rgb(23 23 23 / .12);
+  transform: translate3d(-100px, -100px, 0) scale(0);
+}
+
+/* 7. Booking Call to Action (Night Mood & Fireflies) */
+.booking-cta__background img {
+  transform: scale(var(--booking-scale, 1.04));
+  will-change: transform;
+}
+.booking-cta__fireflies {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.firefly {
+  position: absolute;
+  bottom: -6px;
+  left: var(--firefly-x);
+  width: var(--firefly-size);
+  height: var(--firefly-size);
+  border-radius: 50%;
+  background: var(--gold-hover);
+  filter: blur(2px);
+  opacity: 0;
+  transform: translate3d(0, var(--firefly-y, 0px), 0);
+}
+
+/* 8. View Transitions */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: pageOut 400ms var(--ease-out) both; }
+::view-transition-new(root) { animation: pageIn 400ms var(--ease-out) both; }
+::view-transition-old(majestic-gallery-image), ::view-transition-new(majestic-gallery-image) { animation-duration: 500ms; }
+@keyframes pageOut { to { opacity: 0; } }
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+
+@media (hover: hover) and (pointer: fine) {
+  .has-gallery-cursor .gallery-item__button { cursor: none; }
+}
+
+/* 9. Generic Clickable Image Hover */
+.image-hover:hover img,
+.gallery-item__button:hover img {
+  transform: scale(1.04);
+  transition: transform var(--dur-hover) var(--ease-out);
+}
+
+/* 10. Menu Switchers (Language & Theme) */
+.menu-overlay__settings { padding: 18px 0; border-top: 1px solid var(--hairline); }
+.menu-overlay__switch-group { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.theme-toggle { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0; border: 0; background: none; color: var(--gold-ink); font-family: var(--font-ui); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; transition: color var(--dur-fast); }
+.theme-toggle:hover { color: var(--gold); }
+.theme-toggle .icon { width: 18px; height: 18px; transition: opacity var(--dur-fast), transform var(--dur-fast); }
+html[data-theme="dark"] .theme-toggle__sun { opacity: 0; transform: scale(.55); }
+html:not([data-theme="dark"]) .theme-toggle__moon { opacity: 0; transform: scale(.55); }
+.lang-switch { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-ui); font-size: 11px; letter-spacing: .15em; }
+.lang-switch__item { position: relative; padding: 8px 2px; color: var(--text-body); text-decoration: none; transition: color var(--dur-fast); }
+.lang-switch__item:hover { color: var(--ink); }
+.lang-switch__item.is-active { color: var(--ink); }
+.lang-switch__item.is-active::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--gold); }
+.lang-switch__sep { color: var(--hairline); }
+
+/* Responsive adjustments for motion */
+@media (max-width: 760px) {
+  .gallery-scroll { height: auto; padding-block: var(--section-gap); }
+  .gallery-scroll__sticky { position: static; display: block; height: auto; min-height: 0; overflow: visible; }
+  .gallery-scroll .section-heading { margin-bottom: 36px; }
+  .gallery-grid--preview {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px;
+    transform: none !important;
+  }
+  .gallery-grid--preview .gallery-item {
+    scroll-snap-align: start;
+    flex: 0 0 85vw;
+    width: 85vw;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal], [data-reveal] img, .letter, .photo-dot, .photo-dot__inner, .photo-dot img, .formula-row, .portrait-reveal {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  [data-reveal="rideau"]::after, [data-reveal="curtain"]::after, .hero__fade, .hero__light, .booking-cta__fireflies, .formula-preview, .gallery-cursor {
+    display: none !important;
+  }
+  .hero__media, .hero h1, .hero__scene, .booking-cta__background { filter: none !important; transform: none !important; }
+  .hero__content, .hero-pill { opacity: 1 !important; }
+  .gallery-scroll { height: auto; padding-block: var(--section-gap); }
+  .gallery-scroll__sticky { position: static; display: block; height: auto; min-height: 0; overflow: visible; }
+  .gallery-grid--preview { width: 100%; overflow-x: auto; transform: none !important; }
+  .gallery-grid--preview .gallery-item { opacity: 1; transform: none; }
+  .gallery-grid--preview .gallery-item__button picture, .gallery-grid--preview .gallery-item__button img { transform: none !important; }
+  .gallery-item__button { cursor: pointer !important; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+}
