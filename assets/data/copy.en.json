@@ -1,0 +1,115 @@
+{
+  "brand": {
+    "name": "Majestic Residence Hotel",
+    "location": "Bonoua, Côte d'Ivoire",
+    "tagline": "Elegant stays, restful moments.",
+    "phonePrimary": "+225 07 47 82 01 71",
+    "phoneSecondary": "+225 07 11 10 83 90",
+    "whatsappNumber": "2250747820171",
+    "facebook": "https://web.facebook.com/Majesticbonoua"
+  },
+  "nav": {
+    "home": "Home",
+    "rooms": "Rooms",
+    "services": "Services",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "booking": "Booking",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "stays": [
+    {
+      "id": "day-rest",
+      "name": "Day Rest",
+      "duration": "3 hours",
+      "price": "20,000 FCFA",
+      "description": "A tranquil daytime pause for unwinding and refreshing."
+    },
+    {
+      "id": "full-stay",
+      "name": "Full Stay",
+      "duration": "Noon to noon",
+      "price": "30,000 FCFA",
+      "description": "A full 24-hour retreat with complete access to all residence amenities."
+    },
+    {
+      "id": "night",
+      "name": "Night",
+      "duration": "10 pm to noon",
+      "price": "25,000 FCFA",
+      "description": "An overnight stay dedicated to quiet sleep and morning calm."
+    }
+  ],
+  "amenities": [
+    {
+      "id": "parking",
+      "name": "Secure parking",
+      "description": "Your vehicle is sheltered in a guarded, dedicated parking area."
+    },
+    {
+      "id": "wifi",
+      "name": "Wi-Fi",
+      "description": "High-speed wireless access available across all rooms and outdoor areas."
+    },
+    {
+      "id": "room-service",
+      "name": "Room service",
+      "description": "Discreet, dedicated service delivered directly to your private room."
+    },
+    {
+      "id": "pool",
+      "name": "Swimming pool",
+      "description": "An outdoor swimming pool at the center of the residence to relax and refresh."
+    }
+  ],
+  "sections": {
+    "hero": {
+      "eyebrow": "BONOUA · CÔTE D'IVOIRE",
+      "title": "MAJESTIC",
+      "signature": "Elegant stays, restful moments.",
+      "actionPill": "EXPLORE OUR STAYS",
+      "scroll": "SCROLL TO DISCOVER"
+    },
+    "statement": {
+      "label": "WELCOME TO MAJESTIC",
+      "titlePart1": "YOUR",
+      "titlePart2": "QUIET",
+      "titlePart3": "ESCAPE",
+      "titlePart4": "IN",
+      "titlePart5": "BONOUA",
+      "text": "A setting devoted to calm, relaxation and rest, with services designed to make every stay comfortable."
+    },
+    "stays": {
+      "label": "MAJESTIC RESIDENCE HOTEL",
+      "title": "THREE / WAYS / TO / STAY",
+      "badge": "BOOK ON WHATSAPP",
+      "text": "Choose your stay, pick your arrival date, and our team will confirm availability on WhatsApp.",
+      "cta": "BOOK MY STAY",
+      "note": "Rates in FCFA. Availability to be confirmed by the residence."
+    },
+    "amenities": {
+      "label": "EFFORTLESS COMFORT",
+      "title": "EVERYTHING YOU NEED TO UNWIND.",
+      "link": "EXPLORE OUR SERVICES"
+    },
+    "gallery": {
+      "label": "GLIMPSES OF MAJESTIC",
+      "title": "THE RESIDENCE, IN PICTURES.",
+      "link": "VIEW FULL GALLERY"
+    },
+    "bookingCta": {
+      "label": "YOUR RETREAT AWAITS",
+      "title": "Your stay begins here.",
+      "text": "Choose your stay and reach our team to arrange your visit.",
+      "button": "BOOK ON WHATSAPP"
+    },
+    "location": {
+      "label": "FIND US",
+      "city": "BONOUA",
+      "country": "Côte d'Ivoire",
+      "text": "For any arrival inquiries or directions, our team is directly reachable.",
+      "button": "CONTACT US"
+    }
+  }
+}

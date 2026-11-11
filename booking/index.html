@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book a Stay | Majestic Residence Hotel, Bonoua</title>
+  <meta name="description" content="Select your stay and arrival date at Majestic Residence Hotel in Bonoua, then submit your booking request directly via WhatsApp.">
+  <meta name="theme-color" content="#121110">
+  <meta name="color-scheme" content="dark light">
+  <meta name="robots" content="noindex,follow">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=DM+Sans:wght@400;500&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body data-page="booking" data-solid-header>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div data-site-header></div>
+
+  <main id="main" class="reservation-page">
+    <section class="reservation-hero container container--editorial" aria-labelledby="reservation-title">
+      <p class="label">YOUR RETREAT BEGINS HERE</p>
+      <h1 id="reservation-title">REQUEST A<br><em>BOOKING.</em></h1>
+      <p>Choose your preferred stay and indicate your arrival date. Your prefilled request will open directly in WhatsApp for team validation.</p>
+      <ol class="booking-steps" aria-label="Booking request steps">
+        <li><span>01</span>Stay</li>
+        <li><span>02</span>Date &amp; Details</li>
+        <li><span>03</span>WhatsApp</li>
+      </ol>
+    </section>
+
+    <section class="booking-layout container container--editorial" aria-label="Booking request form">
+      <form class="booking-form" data-booking-form novalidate>
+        <div class="booking-form__section">
+          <span class="booking-form__number">01</span>
+          <div class="booking-form__fields">
+            <h2>CHOOSE YOUR STAY</h2>
+            <div class="field">
+              <label for="stay">Desired stay option</label>
+              <select id="stay" name="stay" required aria-describedby="stay-error">
+                <option value="">Select a stay option</option>
+                <option value="day-rest">Day Rest · 3 hours · 20,000 FCFA</option>
+                <option value="full-stay">Full Stay · Noon to noon · 30,000 FCFA</option>
+                <option value="night">Night · 10 pm to noon · 25,000 FCFA</option>
+              </select>
+              <span class="field__error" id="stay-error"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-form__section">
+          <span class="booking-form__number">02</span>
+          <div class="booking-form__fields">
+            <h2>TELL US ABOUT YOUR ARRIVAL</h2>
+            <div class="field-row">
+              <div class="field">
+                <label for="date">Arrival date</label>
+                <input id="date" name="date" type="date" required aria-describedby="date-error">
+                <span class="field__error" id="date-error"></span>
+              </div>
+              <div class="field">
+                <label for="name">Your full name</label>
+                <input id="name" name="name" type="text" autocomplete="name" placeholder="First and last name" minlength="2" required aria-describedby="name-error">
+                <span class="field__error" id="name-error"></span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="preferences">Special notes / preferences <span>(optional)</span></label>
+              <textarea id="preferences" name="preferences" rows="4" maxlength="500" placeholder="Any specific requirements to share with our reception team"></textarea>
+              <span class="field__hint">500 characters maximum</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-form__submit">
+          <button class="button button--gold" type="submit">CONTINUE TO WHATSAPP <span data-icon="arrow-up-right"></span></button>
+          <p>No payment is collected online. All bookings remain requests until validated by the property.</p>
+          <p class="booking-form__status" data-booking-status role="status" aria-live="polite"></p>
+          <a class="text-link" data-booking-fallback href="#" target="_blank" rel="noopener noreferrer" hidden>OPEN WHATSAPP AGAIN <span data-icon="arrow-up-right"></span></a>
+          <noscript>Please enable JavaScript to format your request, or call reception directly at +225 07 47 82 01 71.</noscript>
+        </div>
+      </form>
+
+      <aside class="booking-summary" aria-labelledby="summary-title">
+        <p class="label">YOUR SELECTION</p>
+        <h2 id="summary-title">SUMMARY</h2>
+        <div class="booking-summary__formula">
+          <span data-summary-formula>Choose a stay</span>
+          <small data-summary-duration>Select your desired option</small>
+        </div>
+        <dl>
+          <div><dt>Arrival date</dt><dd data-summary-date>To be specified</dd></div>
+          <div><dt>Rate</dt><dd data-summary-price>—</dd></div>
+          <div><dt>Location</dt><dd>Bonoua, Côte d’Ivoire</dd></div>
+        </dl>
+        <div class="booking-summary__note">
+          <span data-icon="check"></span>
+          <p>Our team verifies availability and confirms your stay directly on WhatsApp.</p>
+        </div>
+        <a class="booking-summary__phone" href="tel:+2250747820171">
+          <span data-icon="phone"></span>
+          <span>Questions?<br><strong>+225 07 47 82 01 71</strong></span>
+        </a>
+      </aside>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+
+  <script src="/assets/js/config.js" defer></script>
+  <script src="/assets/js/booking.js" defer></script>
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/motion.js" defer></script>
+</body>
+</html>
+
