@@ -6,7 +6,7 @@
   let reducedMotion = ui.reducedMotion.matches;
   let recordingMode = ui.recordingMode;
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
-  const desktopGallery = window.matchMedia("(min-width: 761px) and (min-height: 720px)");
+  const desktopGallery = window.matchMedia("(min-width: 761px) and (min-height: 600px)");
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   const saveData = Boolean(connection?.saveData || /(^|-)2g/.test(connection?.effectiveType || ""));
   const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
