@@ -220,10 +220,26 @@ ul, ol { margin: 0; padding: 0; }
 @keyframes lightboxIn { from { opacity: 0; } to { opacity: 1; } }
 
 .booking-cta { position: relative; display: flex; min-height: 680px; align-items: center; overflow: hidden; background: var(--ink); color: var(--paper); }
-.booking-cta__background { position: absolute; inset: 0 0 0 46%; }
-.booking-cta__background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink), rgb(23 23 23 / .18)); }
+/* Fondu posé sur toute la section (et non sur la seule image) : il couvre aussi la
+   jonction avec le panneau sombre, même quand --booking-scale fait déborder la photo.
+   Sans cela, une bande verticale de photo non dégradée restait visible à 46 %. */
+.booking-cta::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    var(--ink) 0%,
+    var(--ink) 36%,
+    rgb(23 23 23 / .94) 46%,
+    rgb(23 23 23 / .70) 58%,
+    rgb(23 23 23 / .32) 78%,
+    rgb(23 23 23 / .18) 100%);
+}
+.booking-cta__background { position: absolute; inset: 0 0 0 46%; overflow: hidden; }
 .booking-cta__background img { width: 100%; height: 100%; object-fit: cover; opacity: .62; }
-.booking-cta__content { position: relative; z-index: 1; }
+.booking-cta__content { position: relative; z-index: 2; }
 .booking-cta .label { color: var(--gold); }
 .booking-cta h2 { margin-top: 24px; font-size: clamp(58px, 6.2vw, 90px); line-height: .9; }
 .booking-cta h2 em { color: var(--gold); font-weight: 500; }
@@ -472,8 +488,8 @@ ul, ol { margin: 0; padding: 0; }
   .gallery-item__expand { opacity: 1; transform: none; }
   .gallery-item figcaption strong { font-size: 20px; }
   .booking-cta { min-height: 650px; }
+  .booking-cta::before { background: rgb(23 23 23 / .5); }
   .booking-cta__background { inset: 0; opacity: .35; }
-  .booking-cta__background::after { background: rgb(23 23 23 / .5); }
   .booking-cta h2 { font-size: 58px; }
   .location-section h2 { font-size: 23vw; }
   .site-footer__main { grid-template-columns: 1fr 1fr; gap: 32px 20px; padding-block: 56px 40px; }
