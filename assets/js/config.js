@@ -23,17 +23,18 @@
     location: "Bonoua, quartier Delanoi, Côte d’Ivoire",
     landmark: "À 10 minutes de l’église Notre-Dame-de-la-Garde",
     tagline: "Des séjours élégants, des instants paisibles.",
-    // Grille tarifaire : petit-déjeuner inclus et accès à la piscine gratuit dans toutes les formules.
+    // Catégorie A — chambres à la nuitée : petit-déjeuner inclus et accès gratuit à la piscine.
     formulas: [
       { id: "standard", name: "Chambre standard", duration: "Par nuit", price: "30 000 FCFA" },
       { id: "superior", name: "Chambre supérieure", duration: "Par nuit", price: "40 000 FCFA" },
       { id: "standard-multi", name: "Chambre standard", duration: "Dès 2 nuits", price: "25 000 FCFA" },
       { id: "superior-multi", name: "Chambre supérieure", duration: "Dès 2 nuits", price: "35 000 FCFA" }
     ],
+    // Catégorie B — formules de courte durée, section distincte (jamais de grille commune avec A).
     shortFormulas: [
-      { id: "repos", title: "SERVICE REPOS", titleEn: "REST SERVICE", name: "Repos", nameEn: "Rest", duration: "3 heures", durationEn: "3 hours", price: "20 000 FCFA" },
-      { id: "sejour", title: "SERVICE SÉJOUR", titleEn: "STAY SERVICE", name: "Séjour", nameEn: "Stay", duration: "De midi à midi", durationEn: "Noon to noon", price: "30 000 FCFA" },
-      { id: "nuit", title: "SERVICE NUIT", titleEn: "NIGHT SERVICE", name: "Nuit", nameEn: "Night", duration: "De 22 h à midi", durationEn: "10 PM to noon", price: "25 000 FCFA" }
+      { id: "repos", title: "SERVICE REPOS", titleEn: "REST SERVICE", name: "Repos", nameEn: "Rest", detail: "duration", duration: "3 heures", durationEn: "3 hours", price: "20 000 FCFA", priceEn: "20,000 FCFA" },
+      { id: "sejour", title: "SERVICE SÉJOUR", titleEn: "STAY SERVICE", name: "Séjour", nameEn: "Stay", detail: "schedule", duration: "De midi à midi", durationEn: "Noon to noon", price: "30 000 FCFA", priceEn: "30,000 FCFA" },
+      { id: "nuit", title: "SERVICE NUIT", titleEn: "NIGHT SERVICE", name: "Nuit", nameEn: "Night", detail: "schedule", duration: "De 22 h à midi", durationEn: "10 PM to noon", price: "25 000 FCFA", priceEn: "25,000 FCFA" }
     ],
     MEDIA: {
       hero: {

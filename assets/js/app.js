@@ -265,6 +265,26 @@
       });
     }, { threshold: 0.25 });
     images.forEach((element) => imageObserver.observe(element));
+
+    // Les portraits sont masqués par un clip-path à 100 % posé sur l'élément lui-même.
+    // Leur ratio d'intersection reste donc à 0 et l'observateur ci-dessus ne se
+    // déclenche jamais : la photo resterait invisible. On observe le conteneur
+    // parent comme déclencheur, sans modifier l'animation du rideau.
+    const portraitObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const portrait = entry.target.querySelector(".portrait-reveal[data-reveal]");
+        if (!portrait) return;
+        const image = portrait.querySelector("img");
+        if (image) image.loading = "eager";
+        portrait.classList.add("is-visible");
+        portraitObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll(".portrait-reveal[data-reveal]").forEach((portrait) => {
+      if (portrait.parentElement) portraitObserver.observe(portrait.parentElement);
+    });
+
     document.addEventListener("majestic:gallery-rendered", (event) => {
       event.detail.querySelectorAll(imageSelector).forEach((element) => imageObserver.observe(element));
     });

@@ -31,16 +31,33 @@
 
 **Majestic Residence Hotel** · BONOUA (QUARTIER DELANOI) · CÔTE D'IVOIRE
 
-### Formules
+### Deux offres commerciales distinctes — ne jamais les mélanger dans une seule grille tarifaire
 
-| Formule | Durée | Tarif |
+**Catégorie A · NOS CHAMBRES (séjours à la nuitée)**
+
+Sous-titre : « Profitez d'un cadre confortable avec petit-déjeuner inclus et accès gratuit à la piscine. »
+
+| Chambre | Tarif par nuitée | À partir de 2 nuits |
 |---|---|---|
-| Chambre standard | Par nuit | 30 000 FCFA |
-| Chambre supérieure | Par nuit | 40 000 FCFA |
-| Chambre standard | Dès 2 nuits | 25 000 FCFA |
-| Chambre supérieure | Dès 2 nuits | 35 000 FCFA |
+| Chambre standard | 30 000 FCFA / nuitée | 25 000 FCFA / nuitée |
+| Chambre supérieure | 40 000 FCFA / nuitée | 35 000 FCFA / nuitée |
 
-> Petit-déjeuner inclus et accès à la piscine gratuit dans toutes les formules.
+- Le tarif dès 2 nuits est mis en avant comme offre avantageuse, avec la mention discrète « Tarif préférentiel dès 2 nuitées ».
+- Chaque carte rappelle uniquement : « Petit-déjeuner inclus » et « Accès gratuit à la piscine ».
+
+**Catégorie B · NOS FORMULES (courte durée)**
+
+Section séparée, sous-titre : « Une pause détente adaptée à votre emploi du temps. »
+
+| Formule | Détail | Tarif |
+|---|---|---|
+| SERVICE REPOS | Durée : 3 heures | 20 000 FCFA |
+| SERVICE SÉJOUR | Horaire : de midi à midi | 30 000 FCFA |
+| SERVICE NUIT | Horaire : de 22 h à midi | 25 000 FCFA |
+
+Chaque carte porte un bouton « RÉSERVER » ouvrant le WhatsApp officiel `wa.me/2250501752275` avec la formule préremplie.
+
+> Petit-déjeuner inclus et accès gratuit à la piscine sont annoncés pour les chambres (catégorie A) ; ils ne sont pas généralisés aux formules de courte durée.
 
 ### Commodités
 
@@ -60,7 +77,7 @@
 
 ### Règle de contenu
 
-Ne jamais inventer de catégories de chambres, de superficies, de capacités, d'avis clients, de notes ou d'équipements. Seules les informations ci-dessus sont publiables.
+Ne jamais inventer de caractéristiques de chambres (superficie, capacité, équipements, avis clients, notes). Les deux catégories officielles (standard / supérieure), les deux commodités fournies et les tarifs / horaires ci-dessus sont les seules informations publiables ; les deux offres restent présentées dans deux sections distinctes.
 
 ---
 
@@ -540,7 +557,7 @@ Formats : originaux en haute définition, export WebP/AVIF en 2400px de large po
 ## 7. Points à confirmer avant mise en production
 
 1. ~~**Numéro WhatsApp principal**~~ : **confirmé** — +225 05 01 75 22 75 (WhatsApp, contact unique de réservation).
-2. ~~**Horaires exacts des formules**~~ : remplacés par la nouvelle grille par chambre (standard / supérieure, par nuit ou dès 2 nuits).
+2. ~~**Structure commerciale**~~ : **confirmée** — deux sections distinctes : « NOS CHAMBRES » (standard / supérieure, par nuitée ou dès 2 nuitées) et « NOS FORMULES » (Repos / Séjour / Nuit, courte durée). Aucune grille tarifaire commune.
 3. ~~**Adresse exacte**~~ : **confirmée** — Bonoua, quartier Delanoi, à 10 minutes de l'église Notre-Dame-de-la-Garde. La carte Google Maps peut maintenant être intégrée.
 4. **Photos authentiques** de l'établissement pour remplacer les visuels provisoires.
 5. **Fichiers du logo** en vectoriel (SVG ou AI) pour les déclinaisons.

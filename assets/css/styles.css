@@ -1009,3 +1009,73 @@ html:not([data-theme="dark"]) .theme-toggle__moon { opacity: 0; transform: scale
   .gallery-grid--dining { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
   .menu-item__name { font-size: 19px; }
 }
+
+/* ------------------------------------------------------------------
+   Deux offres distinctes : A « Nos chambres » (nuitées) et
+   B « Nos formules » (courte durée). Jamais de grille tarifaire commune.
+   ------------------------------------------------------------------ */
+
+/* A — Nos chambres */
+.room-cards { display: grid; gap: 18px; margin-block: 34px 26px; }
+.room-card {
+  position: relative;
+  padding: 28px 30px 30px;
+  border: 1px solid var(--hairline);
+  background: var(--white);
+  transition: border-color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast);
+}
+.room-card::before { content: ""; position: absolute; top: -1px; left: -1px; width: 56px; height: 2px; background: var(--gold); }
+.room-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 14px 32px rgb(23 23 23 / .07); }
+.room-card__name { color: var(--ink); font-family: var(--font-display); font-size: clamp(28px, 2.6vw, 34px); line-height: 1; }
+.room-card__label { margin-top: 18px; color: var(--gold-ink); font-family: var(--font-ui); font-size: 9px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+.room-card__price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-top: 4px; color: var(--ink); font-family: var(--font-display); font-size: clamp(38px, 3.4vw, 46px); line-height: 1; }
+.room-card__price span { color: var(--text-body); font-family: var(--font-ui); font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+.room-card__deal { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 18px; margin-top: 22px; padding: 14px 16px; background: var(--paper-deep); }
+.room-card__deal > span { color: var(--gold-ink); font-family: var(--font-ui); font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.room-card__deal strong { color: var(--ink); font-family: var(--font-display); font-size: 26px; font-weight: 500; line-height: 1; white-space: nowrap; }
+.room-card__deal small { margin-left: 6px; color: var(--text-body); font-family: var(--font-ui); font-size: 9px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+.room-card__includes { display: grid; gap: 7px; margin-top: 20px; list-style: none; }
+.room-card__includes li { display: flex; align-items: center; gap: 10px; color: var(--text-body); font-size: 14px; }
+.room-card__includes li::before { content: ""; width: 5px; height: 5px; flex: 0 0 auto; border-radius: 50%; background: var(--gold); }
+.room-card .button { margin-top: 24px; min-height: 46px; padding: 12px 22px; font-size: 10px; }
+
+/* B — Nos formules de courte durée : bande détachée, visuellement séparée des nuitées */
+.short-stay-section { border-top: 1px solid var(--hairline); background: var(--paper-deep); }
+.stay-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.stay-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 36px 32px 34px;
+  border: 1px solid var(--hairline);
+  background: var(--paper);
+  transition: border-color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast);
+}
+.stay-card::before { content: ""; position: absolute; top: -1px; left: -1px; width: 56px; height: 2px; background: var(--gold); }
+.stay-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 16px 36px rgb(23 23 23 / .08); }
+.stay-card__title { color: var(--ink); font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.stay-card__label { color: var(--gold-ink); font-family: var(--font-ui); font-size: 9px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+.stay-card__detail { display: flex; flex-direction: column; gap: 6px; margin-top: 30px; }
+.stay-card__detail strong { color: var(--text-body); font-size: 15px; font-weight: 400; }
+.stay-card__price { display: flex; width: 100%; flex-direction: column; gap: 6px; margin-top: 24px; margin-bottom: 30px; padding-top: 20px; border-top: 1px solid var(--hairline); }
+.stay-card__price strong { color: var(--ink); font-family: var(--font-display); font-size: clamp(36px, 3.2vw, 46px); font-weight: 500; line-height: 1; }
+.stay-card .button { width: 100%; margin-top: auto; }
+
+@media (max-width: 1023px) {
+  .room-card { padding: 24px 24px 26px; }
+  .stay-cards { grid-template-columns: repeat(2, 1fr); }
+  .stay-card { padding: 30px 26px; }
+}
+@media (max-width: 760px) {
+  .room-cards { margin-block: 28px 22px; }
+  .room-card { padding: 24px 22px 26px; }
+  .stay-cards { grid-template-columns: 1fr; gap: 18px; }
+  .stay-card { padding: 30px 24px; }
+  .stay-card__detail { margin-top: 24px; }
+  .stay-card__price { margin-bottom: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .room-card, .stay-card { transition: none; }
+  .room-card:hover, .stay-card:hover { transform: none; }
+}

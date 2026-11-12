@@ -111,13 +111,15 @@
 
   const langRoot = `${config.siteRoot}${isEn ? "/en" : ""}`;
 
+  // Catégorie A — chambres à la nuitée (tarif nuit + tarif préférentiel dès 2 nuits).
   document.querySelectorAll("[data-room-cards]").forEach((mount) => {
     mount.innerHTML = ["standard", "superior"].map((id) => {
       const night = window.MajesticBooking.getLocalFormula(id);
       const multi = window.MajesticBooking.getLocalFormula(`${id}-multi`);
       return `
-      <article class="room-card" data-reveal="fade">
+      <article class="room-card" data-reveal="">
         <h3 class="room-card__name">${night.name}</h3>
+        <p class="room-card__label">${t.roomsPage.nightRateLabel}</p>
         <p class="room-card__price">${night.price}<span>${t.roomsPage.perNight}</span></p>
         <p class="room-card__deal"><span>${t.roomsPage.preferredRate}</span><strong>${multi.price}<small>${t.roomsPage.perNight}</small></strong></p>
         <ul class="room-card__includes">
@@ -129,13 +131,17 @@
     }).join("");
   });
 
+  // Catégorie B — formules de courte durée (section distincte, jamais mélangée aux nuitées).
   document.querySelectorAll("[data-short-formulas]").forEach((mount) => {
-    mount.innerHTML = config.shortFormulas.map((formula) => `
-      <article class="stay-card" data-reveal="fade">
+    mount.innerHTML = config.shortFormulas.map((formula) => {
+      const detailLabel = formula.detail === "schedule" ? t.roomsPage.scheduleLabel : t.roomsPage.durationLabel;
+      return `
+      <article class="stay-card" data-reveal="">
         <h3 class="stay-card__title">${pick(formula, "title", "titleEn")}</h3>
-        <p class="stay-card__duration">${pick(formula, "duration", "durationEn")}</p>
-        <p class="stay-card__price">${formula.price}</p>
+        <p class="stay-card__detail"><span class="stay-card__label">${detailLabel}</span><strong>${pick(formula, "duration", "durationEn")}</strong></p>
+        <p class="stay-card__price"><span class="stay-card__label">${t.roomsPage.priceLabel}</span><strong>${pick(formula, "price", "priceEn")}</strong></p>
         <a class="button button--gold" data-book-formula="${formula.id}" href="${window.MajesticBooking.createWhatsAppUrl({ formulaId: formula.id })}" target="_blank" rel="noopener noreferrer">${t.roomsPage.book}</a>
-      </article>`).join("");
+      </article>`;
+    }).join("");
   });
 })();
