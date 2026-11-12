@@ -41,7 +41,7 @@
         base: `${imgRoot}/hero`,
         alt: "Piscine du Majestic Residence Hotel entourée des bâtiments de la résidence et de palmiers",
         width: 1920,
-        height: 1080
+        height: 1490
       },
       formules: {
         standard: {

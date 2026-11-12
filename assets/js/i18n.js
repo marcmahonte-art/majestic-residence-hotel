@@ -138,7 +138,7 @@
       },
       media: {
         hero: {
-          alt: "Piscine du Majestic Residence Hotel au crépuscule"
+          alt: "Piscine et bâtiments du Majestic Residence Hotel à Bonoua, en journée"
         },
         chambre: {
           title: "La chambre",
@@ -436,7 +436,7 @@
       },
       media: {
         hero: {
-          alt: "Swimming pool of the Majestic Residence Hotel at dusk"
+          alt: "Swimming pool and buildings of the Majestic Residence Hotel in Bonoua, in daylight"
         },
         chambre: {
           title: "The room",
