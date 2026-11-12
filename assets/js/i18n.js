@@ -261,9 +261,9 @@
           alt: "Attiéké, escargots sautés et sauce"
         },
         "plat-poisson": {
-          title: "Poisson & macaroni",
+          title: "Attiéké & Poisson",
           category: "Restauration",
-          alt: "Macaroni, poisson braisé et tomates"
+          alt: "Attiéké, poisson braisé, tomates et oignons"
         },
         "plat-buffet": {
           title: "Buffet",
@@ -559,9 +559,9 @@
           alt: "Attiéké, sautéed snails and sauce"
         },
         "plat-poisson": {
-          title: "Fish & macaroni",
+          title: "Attiéké & fish",
           category: "Dining",
-          alt: "Macaroni, braised fish and tomatoes"
+          alt: "Attiéké, braised fish, tomatoes and onions"
         },
         "plat-buffet": {
           title: "Buffet",

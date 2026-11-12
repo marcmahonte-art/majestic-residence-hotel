@@ -337,7 +337,8 @@ Une couche SVG de bruit fractal fixe au-dessus de tout le site, `mix-blend-mode:
 - Catégories : Chambres, Piscine, Extérieurs, Espaces de détente, Résidence de nuit.
 - Grille éditoriale asymétrique, visionneuse plein écran au clic (clavier, swipe, Échap pour fermer).
 - Exclusivement des photographies authentiques de l'établissement.
-- Sous-galerie « EN IMAGES » de la page Menu (`config.galleryDining`, FR/EN) : 7 visuels d'ambiance uniquement — Poisson & macaroni, Buffet, Table en terrasse, Terrasse ombragée, Billard, Baby-foot, Espace massage. Les gros plans de plats et les doublons du plateau de poulet (`plat-poulet`, `plat-escargots`, `plat-braise`, `plat-frites`, `plat-attieke`) n'y figurent pas ; ils restent disponibles dans la galerie complète `config.galleryAll` (`/gallery/`). Ne pas les réintroduire dans `galleryDining`.
+- Sous-galerie « EN IMAGES » de la page Menu (`config.galleryDining`, FR/EN) : 7 visuels d'ambiance uniquement — Attiéké & Poisson, Buffet, Table en terrasse, Terrasse ombragée, Billard, Baby-foot, Espace massage. Les gros plans de plats et les doublons du plateau de poulet (`plat-poulet`, `plat-escargots`, `plat-braise`, `plat-frites`, `plat-attieke`) n'y figurent pas ; ils restent disponibles dans la galerie complète `config.galleryAll` (`/gallery/`). Ne pas les réintroduire dans `galleryDining`.
+- Dénomination officielle du visuel `plat-poisson` : **« Attiéké & Poisson »** (EN : « Attiéké & fish »), et non « Poisson & macaroni ». La photographie montre de l'attiéké, du poisson braisé et une garniture de tomates / oignons ; le titre, l'`alt` et la légende de la visionneuse doivent tous suivre ce libellé dans `config.MEDIA`, `t.media` FR et EN. Le « Macaroni » à 1 000 FCFA de la carte du petit déjeuner (`config.dining`) est un autre mets, distinct : ne pas le supprimer ni le renommer.
 
 **G. Réservation**
 

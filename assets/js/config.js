@@ -255,9 +255,9 @@
       },
       "plat-poisson": {
         base: `${imgRoot}/plat-poisson`,
-        title: "Poisson & macaroni",
+        title: "Attiéké & Poisson",
         category: "Restauration",
-        alt: "Macaroni, poisson braisé et tomates",
+        alt: "Attiéké, poisson braisé, tomates et oignons",
         width: 1080,
         height: 810
       },
