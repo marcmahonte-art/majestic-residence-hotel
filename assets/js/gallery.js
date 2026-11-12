@@ -169,11 +169,13 @@
   });
 
   galleries.forEach((gallery) => {
-    const galleryKey = { preview: "galleryPreview", full: "galleryAll", dining: "galleryDining" }[gallery.dataset.gallery] || "galleryAll";
+    const galleryKey = { preview: "galleryPreview", full: "galleryAll", dining: "galleryDining", rooms: "galleryRooms" }[gallery.dataset.gallery] || "galleryAll";
     const keys = config[galleryKey];
     const items = keys.map(localMedia);
+    // Un montage peut demander une séquence de révélations (rideau / fenêtre / fondu).
+    const revealModes = (gallery.dataset.revealSequence || "fade").split(",").map((mode) => mode.trim()).filter(Boolean);
     gallery.innerHTML = items.map((item, index) => `
-      <figure class="gallery-item" data-category="${item.category}" data-reveal="fade">
+      <figure class="gallery-item" data-category="${item.category}" data-reveal="${revealModes[index % revealModes.length] || "fade"}">
         <button type="button" class="gallery-item__button" data-gallery-index="${index}" aria-label="${t.gallery.zoom(item.title)}">
           ${picture(item, gallery.dataset.gallery === "preview" && index === 0)}
           <span class="gallery-item__expand" aria-hidden="true">${window.MajesticUI.icon("expand")}</span>

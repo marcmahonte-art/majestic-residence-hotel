@@ -30,6 +30,11 @@
       { id: "standard-multi", name: "Chambre standard", duration: "Dès 2 nuits", price: "25 000 FCFA" },
       { id: "superior-multi", name: "Chambre supérieure", duration: "Dès 2 nuits", price: "35 000 FCFA" }
     ],
+    shortFormulas: [
+      { id: "repos", title: "SERVICE REPOS", titleEn: "REST SERVICE", name: "Repos", nameEn: "Rest", duration: "3 heures", durationEn: "3 hours", price: "20 000 FCFA" },
+      { id: "sejour", title: "SERVICE SÉJOUR", titleEn: "STAY SERVICE", name: "Séjour", nameEn: "Stay", duration: "De midi à midi", durationEn: "Noon to noon", price: "30 000 FCFA" },
+      { id: "nuit", title: "SERVICE NUIT", titleEn: "NIGHT SERVICE", name: "Nuit", nameEn: "Night", duration: "De 22 h à midi", durationEn: "10 PM to noon", price: "25 000 FCFA" }
+    ],
     MEDIA: {
       hero: {
         base: `${imgRoot}/hero`,
@@ -324,10 +329,10 @@
     galleryAll: ["chambre", "piscineJour", "piscineCour", "exterieur", "nuitRose", "nuitBleue", "nuitTerrasse", "chambre-01", "chambre-02", "chambre-03", "chambre-04", "chambre-05", "chambre-06", "chambre-07", "cour-nuit-verte", "cour-nuit-rouge", "cour-nuit-magenta", "cour-nuit-violette", "cour-jour-piscine", "cour-jardin", "cour-vue-aerienne", "cour-terrasse", "plat-poulet", "plat-escargots", "plat-poisson", "plat-buffet", "plat-braise", "plat-frites", "plat-attieke", "table-terrasse", "loisir-billard", "loisir-babyfoot", "loisir-massage"]
 ,
     galleryDining: ["plat-poulet", "plat-escargots", "plat-poisson", "plat-buffet", "plat-braise", "plat-frites", "plat-attieke", "table-terrasse", "cour-terrasse", "loisir-billard", "loisir-babyfoot", "loisir-massage"],
+    galleryRooms: ["chambre-01", "chambre-02", "chambre-03", "chambre-04", "chambre-05", "chambre-06", "chambre-07"],
     videos: [
       { id: "chambre-video-1", title: "Visite de chambre — lumière du jour", titleEn: "Room tour — daylight" },
       { id: "chambre-video-2", title: "Visite de chambre — coin salon", titleEn: "Room tour — lounge corner" },
-      { id: "chambre-video-3", title: "Visite de chambre — détails", titleEn: "Room tour — details" },
       { id: "chambre-video-4", title: "Visite de chambre — ambiance", titleEn: "Room tour — atmosphere" },
       { id: "chambre-video-5", title: "Visite de chambre — vue d'ensemble", titleEn: "Room tour — overview" }
     ],

@@ -108,4 +108,34 @@
     link.href = `https://wa.me/${config.WHATSAPP_NUMBER}`;
     link.textContent = t.menuPage.book;
   });
+
+  const langRoot = `${config.siteRoot}${isEn ? "/en" : ""}`;
+
+  document.querySelectorAll("[data-room-cards]").forEach((mount) => {
+    mount.innerHTML = ["standard", "superior"].map((id) => {
+      const night = window.MajesticBooking.getLocalFormula(id);
+      const multi = window.MajesticBooking.getLocalFormula(`${id}-multi`);
+      return `
+      <article class="room-card" data-reveal="fade">
+        <h3 class="room-card__name">${night.name}</h3>
+        <p class="room-card__price">${night.price}<span>${t.roomsPage.perNight}</span></p>
+        <p class="room-card__deal"><span>${t.roomsPage.preferredRate}</span><strong>${multi.price}<small>${t.roomsPage.perNight}</small></strong></p>
+        <ul class="room-card__includes">
+          <li>${t.roomsPage.breakfastIncluded}</li>
+          <li>${t.roomsPage.poolAccess}</li>
+        </ul>
+        <a class="button button--outline" href="${langRoot}/booking/?stay=${id}">${t.roomsPage.requestRoom}</a>
+      </article>`;
+    }).join("");
+  });
+
+  document.querySelectorAll("[data-short-formulas]").forEach((mount) => {
+    mount.innerHTML = config.shortFormulas.map((formula) => `
+      <article class="stay-card" data-reveal="fade">
+        <h3 class="stay-card__title">${pick(formula, "title", "titleEn")}</h3>
+        <p class="stay-card__duration">${pick(formula, "duration", "durationEn")}</p>
+        <p class="stay-card__price">${formula.price}</p>
+        <a class="button button--gold" data-book-formula="${formula.id}" href="${window.MajesticBooking.createWhatsAppUrl({ formulaId: formula.id })}" target="_blank" rel="noopener noreferrer">${t.roomsPage.book}</a>
+      </article>`).join("");
+  });
 })();

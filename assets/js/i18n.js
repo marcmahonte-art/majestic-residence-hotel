@@ -63,7 +63,25 @@
         standard: { name: "Chambre standard", duration: "Par nuit", price: "30 000 FCFA" },
         superior: { name: "Chambre supérieure", duration: "Par nuit", price: "40 000 FCFA" },
         "standard-multi": { name: "Chambre standard", duration: "Dès 2 nuits", price: "25 000 FCFA" },
-        "superior-multi": { name: "Chambre supérieure", duration: "Dès 2 nuits", price: "35 000 FCFA" }
+        "superior-multi": { name: "Chambre supérieure", duration: "Dès 2 nuits", price: "35 000 FCFA" },
+        repos: { name: "Repos", duration: "3 heures", price: "20 000 FCFA" },
+        sejour: { name: "Séjour", duration: "De midi à midi", price: "30 000 FCFA" },
+        nuit: { name: "Nuit", duration: "De 22 h à midi", price: "25 000 FCFA" }
+      },
+      roomsPage: {
+        chambersLabel: "SÉJOURS À LA NUITÉE",
+        chambersTitle: "NOS CHAMBRES",
+        chambersIntro: "Profitez d’un cadre confortable avec petit-déjeuner inclus et accès gratuit à la piscine.",
+        perNight: "/ nuitée",
+        preferredRate: "Tarif préférentiel dès 2 nuitées",
+        breakfastIncluded: "Petit-déjeuner inclus",
+        poolAccess: "Accès gratuit à la piscine",
+        requestRoom: "DEMANDER",
+        formulasLabel: "COURTE DURÉE",
+        formulasTitle: "NOS FORMULES",
+        formulasIntro: "Une pause détente adaptée à votre emploi du temps.",
+        book: "RÉSERVER",
+        validationNote: "Tarifs en FCFA. Toute réservation reste une demande jusqu’à validation par l’établissement."
       },
       floatingWhatsApp: "Demander une réservation sur WhatsApp",
       menuPage: {
@@ -339,7 +357,25 @@
         standard: { name: "Standard room", duration: "Per night", price: "30,000 FCFA" },
         superior: { name: "Superior room", duration: "Per night", price: "40,000 FCFA" },
         "standard-multi": { name: "Standard room", duration: "From 2 nights", price: "25,000 FCFA" },
-        "superior-multi": { name: "Superior room", duration: "From 2 nights", price: "35,000 FCFA" }
+        "superior-multi": { name: "Superior room", duration: "From 2 nights", price: "35,000 FCFA" },
+        repos: { name: "Rest", duration: "3 hours", price: "20,000 FCFA" },
+        sejour: { name: "Stay", duration: "Noon to noon", price: "30,000 FCFA" },
+        nuit: { name: "Night", duration: "10 PM to noon", price: "25,000 FCFA" }
+      },
+      roomsPage: {
+        chambersLabel: "OVERNIGHT STAYS",
+        chambersTitle: "OUR ROOMS",
+        chambersIntro: "Enjoy a comfortable setting with breakfast included and free pool access.",
+        perNight: "/ night",
+        preferredRate: "Preferred rate from 2 nights",
+        breakfastIncluded: "Breakfast included",
+        poolAccess: "Free pool access",
+        requestRoom: "REQUEST",
+        formulasLabel: "SHORT STAYS",
+        formulasTitle: "OUR PACKAGES",
+        formulasIntro: "A relaxing break that fits your schedule.",
+        book: "BOOK",
+        validationNote: "Rates in FCFA. Every booking remains a request until confirmed by the residence."
       },
       floatingWhatsApp: "Request a booking on WhatsApp",
       menuPage: {

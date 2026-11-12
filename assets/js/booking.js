@@ -5,7 +5,7 @@
   const b = t.booking;
 
   const getFormula = (id) =>
-    config.formulas.find((formula) => formula.id === id || formula.key === id);
+    [...config.formulas, ...(config.shortFormulas || [])].find((formula) => formula.id === id || formula.key === id);
 
   // Applique les libellés de la langue courante sur une formule de config.js.
   const localizeFormula = (formula) => {

@@ -52,13 +52,25 @@
           <span class="image-caption">THE ROOM · MAJESTIC</span>
         </div>
         <div class="room-stay__content">
-          <p class="label" data-reveal>YOUR STAY, YOUR PACE</p>
-          <h2 id="room-stay-title" data-reveal>REST,<br>AT YOUR OWN PACE.</h2>
-          <p data-reveal>For one night or a longer stay, choose the standard room or the superior room. Breakfast is included and pool access is free with every option; our team confirms availability on WhatsApp before your request is validated.</p>
-          <div class="formula-table formula-table--large" data-formulas></div>
-          <a class="button button--gold" href="../booking/">REQUEST A STAY <span data-icon="arrow-right"></span></a>
-          <p class="formulas__note">Rates in FCFA. Every booking remains a request until confirmed by the residence.</p>
+          <p class="label" data-reveal data-i18n="roomsPage.chambersLabel">OVERNIGHT STAYS</p>
+          <h2 id="room-stay-title" data-reveal data-i18n="roomsPage.chambersTitle">OUR ROOMS</h2>
+          <p data-reveal data-i18n="roomsPage.chambersIntro">Enjoy a comfortable setting with breakfast included and free pool access.</p>
+          <div class="room-cards" data-room-cards></div>
+          <p class="formulas__note" data-i18n="roomsPage.validationNote">Rates in FCFA. Every booking remains a request until confirmed by the residence.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="section short-stay-section" aria-labelledby="short-stay-title">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <p class="label" data-i18n="roomsPage.formulasLabel">SHORT STAYS</p>
+            <h2 id="short-stay-title" data-i18n="roomsPage.formulasTitle">OUR PACKAGES</h2>
+          </div>
+          <p data-i18n="roomsPage.formulasIntro">A relaxing break that fits your schedule.</p>
+        </div>
+        <div class="stay-cards" data-short-formulas></div>
       </div>
     </section>
 
@@ -72,6 +84,19 @@
           <p data-i18n="videoTour.intro">Discover the rooms in motion, ahead of your stay.</p>
         </div>
         <div class="video-grid" data-videos></div>
+      </div>
+    </section>
+
+    <section class="section rooms-gallery" aria-labelledby="rooms-gallery-title">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <p class="label">IN PICTURES</p>
+            <h2 id="rooms-gallery-title">THE ROOMS,<br>UP CLOSE.</h2>
+          </div>
+          <p>Seven views of our rooms. Click any photo to enlarge it and browse the gallery.</p>
+        </div>
+        <div class="gallery-grid gallery-grid--full" data-gallery="rooms" data-reveal-sequence="curtain,window,fade"></div>
       </div>
     </section>
 
@@ -106,6 +131,7 @@
   <script src="../../assets/js/booking.js" defer></script>
   <script src="../../assets/js/extras.js" defer></script>
   <script src="../../assets/js/app.js" defer></script>
+  <script src="../../assets/js/gallery.js" defer></script>
   <script src="../../assets/js/motion.js" defer></script>
 </body>
 </html>

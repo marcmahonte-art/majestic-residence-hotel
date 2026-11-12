@@ -983,7 +983,8 @@ html:not([data-theme="dark"]) .theme-toggle__moon { opacity: 0; transform: scale
 .tariff-list strong { color: var(--gold-ink); font-family: var(--font-ui); font-weight: 600; font-variant-numeric: tabular-nums; }
 .leisure-card .button { margin-top: auto; width: fit-content; }
 
-.video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+/* Quatre visites : grille 2 × 2 équilibrée sur desktop (les media queries réduisent à 2 puis 1 colonne). */
+.video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 .video-card { min-width: 0; }
 .video-card__frame { position: relative; aspect-ratio: 16 / 9; background: var(--ink); border-radius: var(--radius-card, 8px); overflow: hidden; }
 .video-card__video { display: block; width: 100%; height: 100%; object-fit: cover; }

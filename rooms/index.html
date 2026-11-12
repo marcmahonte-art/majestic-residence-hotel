@@ -52,13 +52,25 @@
           <span class="image-caption">LA CHAMBRE · MAJESTIC</span>
         </div>
         <div class="room-stay__content">
-          <p class="label" data-reveal>VOTRE SÉJOUR, VOTRE RYTHME</p>
-          <h2 id="room-stay-title" data-reveal>LE REPOS,<br>À VOTRE RYTHME.</h2>
-          <p data-reveal>Pour une nuit ou un séjour de plusieurs nuits, choisissez la chambre standard ou la chambre supérieure. Petit-déjeuner inclus et piscine gratuite dans toutes les formules ; notre équipe vérifie les disponibilités sur WhatsApp avant de valider votre demande.</p>
-          <div class="formula-table formula-table--large" data-formulas></div>
-          <a class="button button--gold" href="../booking/">DEMANDER UN SÉJOUR <span data-icon="arrow-right"></span></a>
-          <p class="formulas__note">Tarifs en FCFA. Toute réservation reste une demande jusqu’à validation par l’établissement.</p>
+          <p class="label" data-reveal data-i18n="roomsPage.chambersLabel">SÉJOURS À LA NUITÉE</p>
+          <h2 id="room-stay-title" data-reveal data-i18n="roomsPage.chambersTitle">NOS CHAMBRES</h2>
+          <p data-reveal data-i18n="roomsPage.chambersIntro">Profitez d’un cadre confortable avec petit-déjeuner inclus et accès gratuit à la piscine.</p>
+          <div class="room-cards" data-room-cards></div>
+          <p class="formulas__note" data-i18n="roomsPage.validationNote">Tarifs en FCFA. Toute réservation reste une demande jusqu’à validation par l’établissement.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="section short-stay-section" aria-labelledby="short-stay-title">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <p class="label" data-i18n="roomsPage.formulasLabel">COURTE DURÉE</p>
+            <h2 id="short-stay-title" data-i18n="roomsPage.formulasTitle">NOS FORMULES</h2>
+          </div>
+          <p data-i18n="roomsPage.formulasIntro">Une pause détente adaptée à votre emploi du temps.</p>
+        </div>
+        <div class="stay-cards" data-short-formulas></div>
       </div>
     </section>
 
@@ -72,6 +84,19 @@
           <p data-i18n="videoTour.intro">Découvrez les chambres en mouvement, avant votre séjour.</p>
         </div>
         <div class="video-grid" data-videos></div>
+      </div>
+    </section>
+
+    <section class="section rooms-gallery" aria-labelledby="rooms-gallery-title">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <p class="label">EN IMAGES</p>
+            <h2 id="rooms-gallery-title">LES CHAMBRES,<br>DE PLUS PRÈS.</h2>
+          </div>
+          <p>Sept regards sur nos chambres. Cliquez sur une photo pour l’agrandir et parcourir la galerie.</p>
+        </div>
+        <div class="gallery-grid gallery-grid--full" data-gallery="rooms" data-reveal-sequence="curtain,window,fade"></div>
       </div>
     </section>
 
@@ -106,6 +131,7 @@
   <script src="../assets/js/booking.js" defer></script>
   <script src="../assets/js/extras.js" defer></script>
   <script src="../assets/js/app.js" defer></script>
+  <script src="../assets/js/gallery.js" defer></script>
   <script src="../assets/js/motion.js" defer></script>
 </body>
 </html>
