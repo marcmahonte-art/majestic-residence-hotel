@@ -67,6 +67,7 @@
     ["home", t.nav.home, `${langRoot}/`],
     ["rooms", t.nav.rooms, `${langRoot}/rooms/`],
     ["services", t.nav.services, `${langRoot}/services/`],
+    ["menu", t.nav.menu, `${langRoot}/menu/`],
     ["gallery", t.nav.gallery, `${langRoot}/gallery/`],
     ["contact", t.nav.contact, `${langRoot}/contact/`]
   ];

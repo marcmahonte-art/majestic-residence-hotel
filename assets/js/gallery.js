@@ -169,7 +169,8 @@
   });
 
   galleries.forEach((gallery) => {
-    const keys = config[gallery.dataset.gallery === "preview" ? "galleryPreview" : "galleryAll"];
+    const galleryKey = { preview: "galleryPreview", full: "galleryAll", dining: "galleryDining" }[gallery.dataset.gallery] || "galleryAll";
+    const keys = config[galleryKey];
     const items = keys.map(localMedia);
     gallery.innerHTML = items.map((item, index) => `
       <figure class="gallery-item" data-category="${item.category}" data-reveal="fade">
