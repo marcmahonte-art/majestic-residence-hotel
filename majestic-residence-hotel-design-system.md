@@ -337,6 +337,7 @@ Une couche SVG de bruit fractal fixe au-dessus de tout le site, `mix-blend-mode:
 - Catégories : Chambres, Piscine, Extérieurs, Espaces de détente, Résidence de nuit.
 - Grille éditoriale asymétrique, visionneuse plein écran au clic (clavier, swipe, Échap pour fermer).
 - Exclusivement des photographies authentiques de l'établissement.
+- Sous-galerie « EN IMAGES » de la page Menu (`config.galleryDining`, FR/EN) : 7 visuels d'ambiance uniquement — Poisson & macaroni, Buffet, Table en terrasse, Terrasse ombragée, Billard, Baby-foot, Espace massage. Les gros plans de plats et les doublons du plateau de poulet (`plat-poulet`, `plat-escargots`, `plat-braise`, `plat-frites`, `plat-attieke`) n'y figurent pas ; ils restent disponibles dans la galerie complète `config.galleryAll` (`/gallery/`). Ne pas les réintroduire dans `galleryDining`.
 
 **G. Réservation**
 
