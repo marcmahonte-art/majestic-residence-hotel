@@ -22,7 +22,7 @@ A luxury boutique hospitality web experience built with **pure HTML5, CSS3, and 
   - Subtle ascending golden fireflies.
   - Native `prefers-reduced-motion` compliance.
 - **Bilingual Booking Flow**:
-  - Direct booking request generator formatting prefilled bilingual messages for WhatsApp (`+225 07 47 82 01 71`).
+  - Direct booking request generator formatting prefilled bilingual messages for WhatsApp (`+225 05 01 75 22 75`).
   - No payment required upfront; availability confirmed directly by the hotel reception.
 - **Cross-document Page Transitions**: Native CSS View Transitions API (`@view-transition { navigation: auto; }`).
 - **Responsive Architecture**: Fully optimized from 390px mobile screens to large desktop viewports.
@@ -86,10 +86,20 @@ npx serve .
 
 ## 📱 Contact & Reservation
 
-- **Location**: Bonoua, Côte d'Ivoire
-- **WhatsApp**: [+225 07 47 82 01 71](https://wa.me/2250747820171)
-- **Direct Line**: +225 07 11 10 83 90
+- **Location**: Delanoi district, Bonoua, Côte d'Ivoire — 10 minutes from the Notre-Dame-de-la-Garde church
+- **WhatsApp (main contact)**: [+225 05 01 75 22 75](https://wa.me/2250501752275)
 - **Facebook**: [Majestic Residence Hotel](https://web.facebook.com/Majesticbonoua)
+
+### Rates (per night)
+
+| Option | Rate |
+|---|---|
+| Standard room | 30,000 FCFA |
+| Superior room | 40,000 FCFA |
+| Standard room, from 2 nights | 25,000 FCFA |
+| Superior room, from 2 nights | 35,000 FCFA |
+
+Breakfast included and free pool access with every option.
 
 ---
 

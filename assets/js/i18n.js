@@ -51,16 +51,18 @@
         address: "ADRESSE",
         navigation: "NAVIGATION",
         booking: "Demande de réservation",
-        city: "Bonoua",
+        city: "Bonoua, quartier Delanoi",
+        landmark: "À 10 minutes de l’église Notre-Dame-de-la-Garde",
         country: "Côte d’Ivoire",
         footerNav: "Navigation de pied de page"
       },
       formulas: {
         book: "RÉSERVER",
-        rowAria: (name, duration, price) => `Demander la formule ${name}, ${duration}, ${price} sur WhatsApp`,
-        "day-rest": { name: "Repos", duration: "3 heures", price: "20 000 FCFA" },
-        "full-stay": { name: "Séjour", duration: "De midi à midi", price: "30 000 FCFA" },
-        night: { name: "Nuit", duration: "De 22 h à midi", price: "25 000 FCFA" }
+        rowAria: (name, duration, price) => `Demander la ${name}, ${duration}, ${price} sur WhatsApp`,
+        standard: { name: "Chambre standard", duration: "Par nuit", price: "30 000 FCFA" },
+        superior: { name: "Chambre supérieure", duration: "Par nuit", price: "40 000 FCFA" },
+        "standard-multi": { name: "Chambre standard", duration: "Dès 2 nuits", price: "25 000 FCFA" },
+        "superior-multi": { name: "Chambre supérieure", duration: "Dès 2 nuits", price: "35 000 FCFA" }
       },
       floatingWhatsApp: "Demander une réservation sur WhatsApp",
       booking: {
@@ -174,16 +176,18 @@
         address: "ADDRESS",
         navigation: "NAVIGATION",
         booking: "Booking request",
-        city: "Bonoua",
+        city: "Delanoi district, Bonoua",
+        landmark: "10 minutes from the Notre-Dame-de-la-Garde church",
         country: "Côte d’Ivoire",
         footerNav: "Footer navigation"
       },
       formulas: {
         book: "BOOK",
-        rowAria: (name, duration, price) => `Request the ${name} stay, ${duration}, ${price} on WhatsApp`,
-        "day-rest": { name: "Day Rest", duration: "3 hours", price: "20,000 FCFA" },
-        "full-stay": { name: "Full Stay", duration: "Noon to noon", price: "30,000 FCFA" },
-        night: { name: "Night", duration: "10 pm to noon", price: "25,000 FCFA" }
+        rowAria: (name, duration, price) => `Request the ${name}, ${duration}, ${price} on WhatsApp`,
+        standard: { name: "Standard room", duration: "Per night", price: "30,000 FCFA" },
+        superior: { name: "Superior room", duration: "Per night", price: "40,000 FCFA" },
+        "standard-multi": { name: "Standard room", duration: "From 2 nights", price: "25,000 FCFA" },
+        "superior-multi": { name: "Superior room", duration: "From 2 nights", price: "35,000 FCFA" }
       },
       floatingWhatsApp: "Request a booking on WhatsApp",
       booking: {
@@ -192,7 +196,7 @@
         fallbackName: "To be confirmed",
         messageIntro: "Hello Majestic Residence Hotel,",
         messageRequest: "I would like to make a booking request.",
-        messageFormula: "Stay",
+        messageFormula: "Room",
         messageDate: "Date",
         messageName: "Name",
         messagePreferences: "Preferences",

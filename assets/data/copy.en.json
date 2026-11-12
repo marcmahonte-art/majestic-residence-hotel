@@ -1,11 +1,11 @@
 {
   "brand": {
     "name": "Majestic Residence Hotel",
-    "location": "Bonoua, Côte d'Ivoire",
+    "location": "Delanoi district, Bonoua, Côte d'Ivoire",
+    "landmark": "10 minutes from the Notre-Dame-de-la-Garde church",
     "tagline": "Elegant stays, restful moments.",
-    "phonePrimary": "+225 07 47 82 01 71",
-    "phoneSecondary": "+225 07 11 10 83 90",
-    "whatsappNumber": "2250747820171",
+    "phonePrimary": "+225 05 01 75 22 75",
+    "whatsappNumber": "2250501752275",
     "facebook": "https://web.facebook.com/Majesticbonoua"
   },
   "nav": {
@@ -20,25 +20,32 @@
   },
   "stays": [
     {
-      "id": "day-rest",
-      "name": "Day Rest",
-      "duration": "3 hours",
-      "price": "20,000 FCFA",
-      "description": "A tranquil daytime pause for unwinding and refreshing."
-    },
-    {
-      "id": "full-stay",
-      "name": "Full Stay",
-      "duration": "Noon to noon",
+      "id": "standard",
+      "name": "Standard room",
+      "duration": "Per night",
       "price": "30,000 FCFA",
-      "description": "A full 24-hour retreat with complete access to all residence amenities."
+      "description": "A comfortable standard room with breakfast included and free pool access."
     },
     {
-      "id": "night",
-      "name": "Night",
-      "duration": "10 pm to noon",
+      "id": "superior",
+      "name": "Superior room",
+      "duration": "Per night",
+      "price": "40,000 FCFA",
+      "description": "A superior room with breakfast included and free pool access."
+    },
+    {
+      "id": "standard-multi",
+      "name": "Standard room",
+      "duration": "From 2 nights",
       "price": "25,000 FCFA",
-      "description": "An overnight stay dedicated to quiet sleep and morning calm."
+      "description": "Discounted nightly rate on standard rooms from the second night onwards."
+    },
+    {
+      "id": "superior-multi",
+      "name": "Superior room",
+      "duration": "From 2 nights",
+      "price": "35,000 FCFA",
+      "description": "Discounted nightly rate on superior rooms from the second night onwards."
     }
   ],
   "amenities": [
@@ -61,6 +68,11 @@
       "id": "pool",
       "name": "Swimming pool",
       "description": "An outdoor swimming pool at the center of the residence to relax and refresh."
+    },
+    {
+      "id": "breakfast",
+      "name": "Breakfast included",
+      "description": "Breakfast is included with every stay, at no extra charge."
     }
   ],
   "sections": {
@@ -82,9 +94,9 @@
     },
     "stays": {
       "label": "MAJESTIC RESIDENCE HOTEL",
-      "title": "THREE / WAYS / TO / STAY",
+      "title": "OUR / ROOM / STAY / RATES",
       "badge": "BOOK ON WHATSAPP",
-      "text": "Choose your stay, pick your arrival date, and our team will confirm availability on WhatsApp.",
+      "text": "Choose your room, pick your arrival date, and our team will confirm availability on WhatsApp.",
       "cta": "BOOK MY STAY",
       "note": "Rates in FCFA. Availability to be confirmed by the residence."
     },

@@ -29,17 +29,18 @@
 
 ## 1. Informations commerciales
 
-**Majestic Residence Hotel** · BONOUA · CÔTE D'IVOIRE
+**Majestic Residence Hotel** · BONOUA (QUARTIER DELANOI) · CÔTE D'IVOIRE
 
 ### Formules
 
-| Formule | Horaire | Tarif |
+| Formule | Durée | Tarif |
 |---|---|---|
-| Repos | 3 heures | 20 000 FCFA |
-| Séjour | 12h à 12h | 30 000 FCFA |
-| Nuit | 22h à 12h | 25 000 FCFA |
+| Chambre standard | Par nuit | 30 000 FCFA |
+| Chambre supérieure | Par nuit | 40 000 FCFA |
+| Chambre standard | Dès 2 nuits | 25 000 FCFA |
+| Chambre supérieure | Dès 2 nuits | 35 000 FCFA |
 
-> Horaires à confirmer avec l'établissement avant mise en ligne.
+> Petit-déjeuner inclus et accès à la piscine gratuit dans toutes les formules.
 
 ### Commodités
 
@@ -47,14 +48,15 @@
 - Wi-Fi
 - Room Service
 - Piscine
+- Petit-déjeuner inclus
 
 ### Contact
 
-- +225 07 47 82 01 71
-- +225 07 11 10 83 90
+- WhatsApp (contact principal de réservation) : +225 05 01 75 22 75
+- Adresse : Bonoua, quartier Delanoi — à 10 minutes de l'église Notre-Dame-de-la-Garde
 - Facebook : Majestic Residence Hotel (https://web.facebook.com/Majesticbonoua)
 
-> Deux numéros différents circulent (affiche et page Facebook). Un seul doit être défini comme numéro WhatsApp principal.
+> Les anciens numéros ne sont plus présentés comme contacts de réservation.
 
 ### Règle de contenu
 
@@ -465,17 +467,18 @@ Les URLs ci-dessous sont des visuels provisoires. Chaque emplacement sera rempla
 - **Mise en page :** colonne de 1180px, filet en haut, trois colonnes (1.12fr / 1.12fr / .96fr).
 - **Colonne gauche :**
   - Label `--gold-ink` « MAJESTIC RESIDENCE HOTEL ».
-  - « TROIS / FAÇONS / DE / SÉJOURNER » en Cormorant à clamp(34px, 4.25vw, 66px), un mot par ligne.
+  - « NOS / FORMULES / DE / SÉJOUR » en Cormorant à clamp(34px, 4.25vw, 66px), un mot par ligne.
   - Badge de 84px : anneau de 48 traits radiaux dorés qui tourne une fois toutes les 16s, icône WhatsApp (trait fin) au centre. C'est un lien de réservation.
   - Légende « RÉSERVER SUR WHATSAPP ».
 - **Colonne centrale :**
-  - Paragraphe DM Sans 15px : « Choisissez votre formule, indiquez votre date d'arrivée, et notre équipe vous confirme la disponibilité sur WhatsApp. »
+  - Paragraphe DM Sans 15px : « Choisissez votre chambre, indiquez votre date d'arrivée, et notre équipe vous confirme la disponibilité sur WhatsApp. »
   - Tableau des formules (composant 3.4) :
-    - Repos · 3 heures · 20 000 FCFA
-    - Séjour · 12h à 12h · 30 000 FCFA
-    - Nuit · 22h à 12h · 25 000 FCFA
+    - Chambre standard · Par nuit · 30 000 FCFA
+    - Chambre supérieure · Par nuit · 40 000 FCFA
+    - Chambre standard · Dès 2 nuits · 25 000 FCFA
+    - Chambre supérieure · Dès 2 nuits · 35 000 FCFA
   - Chaque ligne ouvre WhatsApp avec la formule préremplie.
-  - Ligne d'icônes Lucide : Parking protégé · Wi-Fi · Room Service · Piscine.
+  - Ligne d'icônes Lucide : Parking protégé · Wi-Fi · Room Service · Piscine · Petit-déjeuner.
   - Bouton principal « RÉSERVER MON SÉJOUR ».
 - **Colonne droite :** portrait 2:3, rayon 6px. L'image dérive de ±7% dans son cadre au scroll (parallaxe).
 - **Apparition :**
@@ -536,9 +539,9 @@ Formats : originaux en haute définition, export WebP/AVIF en 2400px de large po
 
 ## 7. Points à confirmer avant mise en production
 
-1. **Numéro WhatsApp principal** : +225 07 47 82 01 71 ou +225 07 11 10 83 90 ?
-2. **Horaires exacts des formules** (notamment la formule Séjour).
-3. **Adresse exacte** pour la carte Google Maps et le bouton Itinéraire.
+1. ~~**Numéro WhatsApp principal**~~ : **confirmé** — +225 05 01 75 22 75 (WhatsApp, contact unique de réservation).
+2. ~~**Horaires exacts des formules**~~ : remplacés par la nouvelle grille par chambre (standard / supérieure, par nuit ou dès 2 nuits).
+3. ~~**Adresse exacte**~~ : **confirmée** — Bonoua, quartier Delanoi, à 10 minutes de l'église Notre-Dame-de-la-Garde. La carte Google Maps peut maintenant être intégrée.
 4. **Photos authentiques** de l'établissement pour remplacer les visuels provisoires.
 5. **Fichiers du logo** en vectoriel (SVG ou AI) pour les déclinaisons.
 

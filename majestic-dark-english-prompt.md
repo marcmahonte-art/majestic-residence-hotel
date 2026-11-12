@@ -53,8 +53,7 @@ Real photography, transparent pricing and effortless booking come first.
 
 ### Contact
 
-- +225 07 47 82 01 71
-- +225 07 11 10 83 90
+- WhatsApp (main booking contact): +225 05 01 75 22 75
 - Facebook: Majestic Residence Hotel (https://web.facebook.com/Majesticbonoua)
 
 > Two different numbers exist. Only one confirmed number becomes the main WhatsApp number.
@@ -447,7 +446,7 @@ A professional shoot, with a strong **dusk and night series** since the dark the
 
 ## 6. To confirm before launch
 
-1. **Main WhatsApp number**: +225 07 47 82 01 71 or +225 07 11 10 83 90?
+1. **Main WhatsApp number**: confirmed — +225 05 01 75 22 75.
 2. **Exact hours** of each stay.
 3. **English names of the stays** (Day Rest / Full Stay / Night) and the tagline "Elegant stays, restful moments." to be validated by the client.
 4. **Exact address** for the map and directions.

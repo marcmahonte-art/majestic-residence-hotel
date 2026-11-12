@@ -13,18 +13,19 @@
   window.MAJESTIC_CONFIG = Object.freeze({
     siteRoot,
     imgRoot,
-    WHATSAPP_NUMBER: "2250747820171",
-    phonePrimary: "+225 07 47 82 01 71",
-    phoneSecondary: "+225 07 11 10 83 90",
-    phonePrimaryHref: "+2250747820171",
-    phoneSecondaryHref: "+2250711108390",
+    WHATSAPP_NUMBER: "2250501752275",
+    phonePrimary: "+225 05 01 75 22 75",
+    phonePrimaryHref: "+2250501752275",
     facebook: "https://web.facebook.com/Majesticbonoua",
-    location: "Bonoua, Côte d’Ivoire",
+    location: "Bonoua, quartier Delanoi, Côte d’Ivoire",
+    landmark: "À 10 minutes de l’église Notre-Dame-de-la-Garde",
     tagline: "Des séjours élégants, des instants paisibles.",
+    // Grille tarifaire : petit-déjeuner inclus et accès à la piscine gratuit dans toutes les formules.
     formulas: [
-      { id: "day-rest", key: "repos", name: "Repos", duration: "3 heures", price: "20 000 FCFA" },
-      { id: "full-stay", key: "sejour", name: "Séjour", duration: "De midi à midi", price: "30 000 FCFA" },
-      { id: "night", key: "nuit", name: "Nuit", duration: "De 22 h à midi", price: "25 000 FCFA" }
+      { id: "standard", name: "Chambre standard", duration: "Par nuit", price: "30 000 FCFA" },
+      { id: "superior", name: "Chambre supérieure", duration: "Par nuit", price: "40 000 FCFA" },
+      { id: "standard-multi", name: "Chambre standard", duration: "Dès 2 nuits", price: "25 000 FCFA" },
+      { id: "superior-multi", name: "Chambre supérieure", duration: "Dès 2 nuits", price: "35 000 FCFA" }
     ],
     MEDIA: {
       hero: {
@@ -34,29 +35,21 @@
         height: 1080
       },
       formules: {
-        "day-rest": {
+        standard: {
           base: `${imgRoot}/chambre`,
-          alt: "Chambre du Majestic Residence Hotel avec un lit et une lumière chaleureuse"
+          alt: "Chambre standard du Majestic Residence Hotel avec un lit et une lumière chaleureuse"
         },
-        "full-stay": {
-          base: `${imgRoot}/piscine-cour`,
-          alt: "Piscine centrale et architecture du Majestic Residence Hotel"
-        },
-        night: {
-          base: `${imgRoot}/piscine-nuit-terrasse`,
-          alt: "Vue sur la piscine éclairée de la résidence à la nuit tombée"
-        },
-        repos: {
+        superior: {
           base: `${imgRoot}/chambre`,
-          alt: "Chambre du Majestic Residence Hotel avec un lit et une lumière chaleureuse"
+          alt: "Chambre supérieure du Majestic Residence Hotel avec un lit et une lumière chaleureuse"
         },
-        sejour: {
-          base: `${imgRoot}/piscine-cour`,
-          alt: "Piscine centrale et architecture du Majestic Residence Hotel"
+        "standard-multi": {
+          base: `${imgRoot}/chambre`,
+          alt: "Chambre standard du Majestic Residence Hotel avec un lit et une lumière chaleureuse"
         },
-        nuit: {
-          base: `${imgRoot}/piscine-nuit-terrasse`,
-          alt: "Vue sur la piscine éclairée de la résidence à la nuit tombée"
+        "superior-multi": {
+          base: `${imgRoot}/chambre`,
+          alt: "Chambre supérieure du Majestic Residence Hotel avec un lit et une lumière chaleureuse"
         }
       },
       chambre: {

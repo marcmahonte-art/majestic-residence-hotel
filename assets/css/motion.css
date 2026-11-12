@@ -363,3 +363,4 @@ html:not([data-theme="dark"]) .theme-toggle__moon { opacity: 0; transform: scale
   .gallery-item__button { cursor: pointer !important; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
 }
+
