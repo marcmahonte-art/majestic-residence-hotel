@@ -400,7 +400,7 @@ Merci de me confirmer la disponibilité.
 
 - Rapide : Lighthouse 90+ en performance et accessibilité.
 - Images WebP/AVIF avec `srcset`, `loading="lazy"` sauf l'image hero (`fetchpriority="high"`).
-- Hero : 6 fichiers `hero-{768,1280,1920}.{avif,webp}` + `majestic-og.jpg` (1200×630 pour Open Graph). La photo officielle est une **vue de jour** de la piscine et des bâtiments à Bonoua. On conserve le ratio paysage de la source (1920×1490, ~1.29) : `object-fit: cover` adapte le cadrage au viewport. Ne pas pré-recadrer en 16/9 — le mobile perdrait trop de largeur utile. Les attributs `width`/`height` du `<img>` et `MEDIA.hero` doivent toujours refléter ce ratio pour éviter tout décalage de mise en page.
+- Hero : 6 fichiers `hero-{768,1280,1440}.{avif,webp}` + `majestic-og.jpg` (1200×630 pour Open Graph). La photo officielle est une **vue de jour** de la cour, de la piscine et des bâtiments à Bonoua. On conserve le ratio paysage de la source (1440×1080, 4/3) : `object-fit: cover` adapte le cadrage au viewport (`50% 48%` desktop, `56% center` mobile). Ne pas pré-recadrer en 16/9 — le mobile perdrait trop de largeur utile. Les attributs `width`/`height` du `<img>` (accueil + Services FR/EN) et `MEDIA.hero` doivent toujours refléter ce ratio pour éviter tout décalage de mise en page. À chaque changement de photo, régénérer les 6 variantes **et** `majestic-og.jpg` : l'accueil utilise `majestic-og.jpg` en `og:image`, les pages Services utilisent `hero-1440.webp`.
 - Polices Google Fonts avec `display=swap` et préconnexion.
 - Responsive sur tous les écrans.
 - Accessible (voir 3.9).
