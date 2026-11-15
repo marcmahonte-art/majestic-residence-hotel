@@ -85,9 +85,10 @@
         width: 1600,
         height: 1200
       },
-      // Visuel dédié à la vignette « La cour » de /gallery/ (FR/EN). On réutilise
-      // le couple `services-piscine-jour-{800,1600}` déjà employé par les pages
-      // Services, sans écraser `piscine-cour-*` (accueil, Chambres, galleryPreview).
+      // Visuel dédié aux vignettes « La cour » de /gallery/ et de l'aperçu de
+      // l'accueil (FR/EN). On réutilise le couple `services-piscine-jour-{800,1600}`
+      // déjà employé par les pages Services, sans écraser `piscine-cour-*` (pastille
+      // du statement de l'accueil et pages Chambres).
       "cour-panorama": {
         base: `${imgRoot}/services-piscine-jour`,
         title: "La cour",
@@ -337,7 +338,7 @@
         height: 800
       }
     },
-    galleryPreview: ["piscineCour", "chambre", "nuitBleue", "exterieur", "nuitRose"],
+    galleryPreview: ["cour-panorama", "chambre", "nuitBleue", "exterieur", "nuitRose"],
     galleryAll: ["chambre", "piscineJour", "cour-panorama", "exterieur", "nuitRose", "nuitBleue", "nuitTerrasse", "chambre-01", "chambre-02", "chambre-03", "chambre-04", "chambre-05", "chambre-06", "chambre-07", "cour-nuit-verte", "cour-nuit-rouge", "cour-nuit-magenta", "cour-nuit-violette", "cour-jour-piscine", "cour-jardin", "cour-vue-aerienne", "cour-terrasse", "plat-poulet", "plat-escargots", "plat-poisson", "plat-buffet", "plat-braise", "plat-frites", "plat-attieke", "table-terrasse", "loisir-billard", "loisir-babyfoot", "loisir-massage"]
 ,
     // Galerie « EN IMAGES » de la page Menu : on écarte les gros plans de plats et
