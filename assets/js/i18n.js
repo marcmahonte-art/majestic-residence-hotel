@@ -155,6 +155,11 @@
           category: "Piscine",
           alt: "Piscine de la cour centrale entourée des bâtiments de la résidence"
         },
+        "cour-panorama": {
+          title: "La cour",
+          category: "Piscine",
+          alt: "Vue d'ensemble de la cour et de la piscine, palmiers et bâtiments blancs et bordeaux"
+        },
         exterieur: {
           title: "La résidence",
           category: "Extérieurs",
@@ -452,6 +457,11 @@
           title: "The courtyard",
           category: "Pool",
           alt: "Pool in the central courtyard surrounded by the residence buildings"
+        },
+        "cour-panorama": {
+          title: "The courtyard",
+          category: "Pool",
+          alt: "Wide view of the courtyard and pool with palm trees and the white and burgundy buildings"
         },
         exterieur: {
           title: "The residence",
