@@ -73,7 +73,7 @@
         base: `${imgRoot}/piscine-jour`,
         title: "La piscine",
         category: "Piscine",
-        alt: "Piscine reflétant les palmiers à la lumière du jour",
+        alt: "Vue de jour de la cour et de la piscine depuis le balcon, palmiers et bâtiments de la résidence",
         width: 1600,
         height: 1200
       },

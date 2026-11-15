@@ -148,7 +148,7 @@
         piscineJour: {
           title: "La piscine",
           category: "Piscine",
-          alt: "Piscine reflétant les palmiers à la lumière du jour"
+          alt: "Vue de jour de la cour et de la piscine depuis le balcon, palmiers et bâtiments de la résidence"
         },
         piscineCour: {
           title: "La cour",
@@ -451,7 +451,7 @@
         piscineJour: {
           title: "The pool",
           category: "Pool",
-          alt: "Pool reflecting the palm trees in daylight"
+          alt: "Daytime view of the courtyard and pool from the balcony, with palms and the residence buildings"
         },
         piscineCour: {
           title: "The courtyard",
