@@ -52,6 +52,7 @@
     "map-pin": '<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
     phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/>',
     "message-circle": '<path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.5 9.5 0 0 1-4-.9L3 21l1.8-5a8.4 8.4 0 1 1 16.2-4.5Z"/>',
+    mail: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/>',
     calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/>',
     user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
     facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/>',
@@ -132,7 +133,10 @@
           <div class="site-footer__column">
             <span class="label">${t.footer.contact}</span>
             <a href="tel:${config.phonePrimaryHref}">${config.phonePrimary}</a>
+            <a href="tel:${config.phoneSecondaryHref}">${config.phoneSecondary}</a>
+            <a href="tel:${config.phoneTertiaryHref}">${config.phoneTertiary}</a>
             <a href="https://wa.me/${config.WHATSAPP_NUMBER}" data-whatsapp>WhatsApp</a>
+            <a href="mailto:${config.email}">${config.email}</a>
             <a href="${config.facebook}" target="_blank" rel="noopener noreferrer">Facebook ${icon("arrow-up-right")}</a>
           </div>
           <div class="site-footer__column">

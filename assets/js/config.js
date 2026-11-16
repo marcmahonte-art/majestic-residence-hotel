@@ -18,6 +18,15 @@
     WHATSAPP_NUMBER: "2250501752275",
     phonePrimary: "+225 05 01 75 22 75",
     phonePrimaryHref: "+2250501752275",
+    phoneSecondary: "+225 07 11 08 39 90",
+    phoneSecondaryHref: "+2250711108390",
+    phoneTertiary: "+225 05 55 53 15 15",
+    phoneTertiaryHref: "+2250555531515",
+    phoneNumbers: [
+      { display: "+225 05 01 75 22 75", href: "+2250501752275", label: "WhatsApp" },
+      { display: "+225 07 11 08 39 90", href: "+2250711108390", label: "Téléphone" },
+      { display: "+225 05 55 53 15 15", href: "+2250555531515", label: "Téléphone" }
+    ],
     email: "majesticbonoua@gmail.com",
     facebook: "https://web.facebook.com/Majesticbonoua",
     location: "Bonoua, quartier Delanoi, Côte d’Ivoire",
