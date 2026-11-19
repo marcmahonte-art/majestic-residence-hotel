@@ -84,7 +84,7 @@
           ${icon("menu")}<span>${t.header.menu}</span>
         </button>
         <a class="header__logo" href="${langRoot}/" aria-label="${t.header.home}">
-          <img src="${imgRoot}/logo-majestic.png" width="560" height="560" alt="Majestic Residence Hotel" fetchpriority="high">
+          <img src="${imgRoot}/majestic-residence-hotel-bonoua-logo.png" width="560" height="560" alt="Majestic Residence Hotel" fetchpriority="high">
         </a>
         <a class="header__booking" href="${langRoot}/booking/" aria-label="${t.header.bookAria}"><span>${t.header.book}</span>${icon("arrow-up-right")}</a>
       </header>
@@ -127,7 +127,7 @@
       <footer class="site-footer">
         <div class="site-footer__main container">
           <div class="site-footer__brand">
-            <a href="${langRoot}/" aria-label="${t.header.home}"><img src="${imgRoot}/logo-majestic.png" width="560" height="560" loading="lazy" alt="Majestic Residence Hotel"></a>
+            <a href="${langRoot}/" aria-label="${t.header.home}"><img src="${imgRoot}/majestic-residence-hotel-bonoua-logo.png" width="560" height="560" loading="lazy" alt="Majestic Residence Hotel"></a>
             <p>${t.footer.tagline}</p>
           </div>
           <div class="site-footer__column">

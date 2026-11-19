@@ -143,22 +143,22 @@
         chambre: {
           title: "La chambre",
           category: "Chambres",
-          alt: "Chambre avec un lit double, une décoration murale et une lumière chaleureuse"
+          alt: "Chambre avec un lit double, une décoration murale et une lumière chaleureuse — Majestic Residence Hotel, Bonoua"
         },
         piscineJour: {
           title: "La piscine",
           category: "Piscine",
-          alt: "Vue de jour de la cour et de la piscine depuis le balcon, palmiers et bâtiments de la résidence"
+          alt: "Vue de jour de la cour et de la piscine depuis le balcon, palmiers et bâtiments de la résidence — Majestic Residence Hotel, Bonoua"
         },
         piscineCour: {
           title: "La cour",
           category: "Piscine",
-          alt: "Piscine de la cour centrale entourée des bâtiments de la résidence"
+          alt: "Piscine de la cour centrale entourée des bâtiments de la résidence — Majestic Residence Hotel, Bonoua"
         },
         "cour-panorama": {
           title: "La cour",
           category: "Piscine",
-          alt: "Vue d'ensemble de la cour et de la piscine, palmiers et bâtiments blancs et bordeaux"
+          alt: "Vue d'ensemble de la cour et de la piscine, palmiers et bâtiments blancs et bordeaux — Majestic Residence Hotel, Bonoua"
         },
         exterieur: {
           title: "La résidence",
@@ -173,102 +173,102 @@
         nuitBleue: {
           title: "La résidence de nuit",
           category: "De nuit",
-          alt: "Lumières bleues de la piscine se reflétant sur la façade à la nuit tombée"
+          alt: "Lumières bleues de la piscine se reflétant sur la façade à la nuit tombée — Majestic Residence Hotel, Bonoua"
         },
         nuitTerrasse: {
           title: "Vue nocturne",
           category: "De nuit",
-          alt: "Vue en hauteur sur la piscine et la résidence de nuit"
+          alt: "Vue en hauteur sur la piscine et la résidence de nuit — Majestic Residence Hotel, Bonoua"
         },
         "chambre-01": {
           title: "Chambre lumineuse",
           category: "Chambres",
-          alt: "Chambre aux murs jaunes avec lit double et rideaux bleus"
+          alt: "Chambre aux murs jaunes avec lit double et rideaux bleus — Majestic Residence Hotel, Bonoua"
         },
         "chambre-02": {
           title: "Chambre avec salon",
           category: "Chambres",
-          alt: "Chambre rose avec coin salon, fauteuils blancs et table ronde"
+          alt: "Chambre rose avec coin salon, fauteuils blancs et table ronde — Majestic Residence Hotel, Bonoua"
         },
         "chambre-03": {
           title: "Chambre colorée",
           category: "Chambres",
-          alt: "Chambre grise avec couvre-lit multicolore et rideaux dorés"
+          alt: "Chambre grise avec couvre-lit multicolore et rideaux dorés — Majestic Residence Hotel, Bonoua"
         },
         "chambre-04": {
           title: "Chambre élégante",
           category: "Chambres",
-          alt: "Chambre avec couvre-lit à motifs circulaires et décor mural"
+          alt: "Chambre avec couvre-lit à motifs circulaires et décor mural — Majestic Residence Hotel, Bonoua"
         },
         "chambre-05": {
           title: "Chambre mosaïque",
           category: "Chambres",
-          alt: "Chambre rose avec mur en mosaïque et lit double"
+          alt: "Chambre rose avec mur en mosaïque et lit double — Majestic Residence Hotel, Bonoua"
         },
         "chambre-06": {
           title: "Chambre rouge",
           category: "Chambres",
-          alt: "Chambre au mur rouge avec couvre-lit coloré et télévision"
+          alt: "Chambre au mur rouge avec couvre-lit coloré et télévision — Majestic Residence Hotel, Bonoua"
         },
         "chambre-07": {
           title: "Chambre avec coin salon",
           category: "Chambres",
-          alt: "Chambre blanche avec deux fauteuils et table jaune"
+          alt: "Chambre blanche avec deux fauteuils et table jaune — Majestic Residence Hotel, Bonoua"
         },
         "cour-nuit-verte": {
           title: "Piscine verte de nuit",
           category: "De nuit",
-          alt: "Piscine éclairée en vert dans la cour, vue en hauteur"
+          alt: "Piscine éclairée en vert dans la cour, vue en hauteur — Majestic Residence Hotel, Bonoua"
         },
         "cour-nuit-rouge": {
           title: "Piscine rouge de nuit",
           category: "De nuit",
-          alt: "Piscine aux lumières rouges entourée des bâtiments"
+          alt: "Piscine aux lumières rouges entourée des bâtiments — Majestic Residence Hotel, Bonoua"
         },
         "cour-nuit-magenta": {
           title: "Piscine magenta",
           category: "De nuit",
-          alt: "Piscine éclairée en magenta dans la cour centrale"
+          alt: "Piscine éclairée en magenta dans la cour centrale — Majestic Residence Hotel, Bonoua"
         },
         "cour-nuit-violette": {
           title: "Piscine violette",
           category: "De nuit",
-          alt: "Piscine aux reflets violets sous les lumières de la résidence"
+          alt: "Piscine aux reflets violets sous les lumières de la résidence — Majestic Residence Hotel, Bonoua"
         },
         "cour-jour-piscine": {
           title: "Piscine de jour",
           category: "Extérieurs",
-          alt: "Piscine et bâtiments de la résidence en journée"
+          alt: "Piscine et bâtiments de la résidence en journée — Majestic Residence Hotel, Bonoua"
         },
         "cour-jardin": {
           title: "Jardin de la cour",
           category: "Extérieurs",
-          alt: "Pelouse et plantations de la cour centrale"
+          alt: "Pelouse et plantations de la cour centrale — Majestic Residence Hotel, Bonoua"
         },
         "cour-vue-aerienne": {
           title: "Vue aérienne",
           category: "Extérieurs",
-          alt: "Vue en hauteur sur la piscine et les toits de la résidence"
+          alt: "Vue en hauteur sur la piscine et les toits de la résidence — Majestic Residence Hotel, Bonoua"
         },
         "cour-terrasse": {
           title: "Terrasse ombragée",
           category: "Restauration",
-          alt: "Table dressée sur la terrasse ombragée de la résidence"
+          alt: "Table dressée sur la terrasse ombragée de la résidence — Majestic Residence Hotel, Bonoua"
         },
         "plat-poulet": {
           title: "Poulet braisé & riz",
           category: "Restauration",
-          alt: "Assiette de riz et poulet braisé en sauce"
+          alt: "Assiette de riz et poulet braisé en sauce — Majestic Residence Hotel, Bonoua"
         },
         "plat-escargots": {
           title: "Escargots sautés",
           category: "Restauration",
-          alt: "Attiéké, escargots sautés et sauce"
+          alt: "Attiéké, escargots sautés et sauce — Majestic Residence Hotel, Bonoua"
         },
         "plat-poisson": {
           title: "Attiéké & Poisson",
           category: "Restauration",
-          alt: "Attiéké, poisson braisé, tomates et oignons"
+          alt: "Attiéké, poisson braisé, tomates et oignons — Majestic Residence Hotel, Bonoua"
         },
         "plat-buffet": {
           title: "Buffet",
@@ -278,22 +278,22 @@
         "plat-braise": {
           title: "Poulet braisé",
           category: "Restauration",
-          alt: "Plat de poulet braisé garni"
+          alt: "Plat de poulet braisé garni — Majestic Residence Hotel, Bonoua"
         },
         "plat-frites": {
           title: "Frites & poulet",
           category: "Restauration",
-          alt: "Frites et poulet braisé en sauce"
+          alt: "Frites et poulet braisé en sauce — Majestic Residence Hotel, Bonoua"
         },
         "plat-attieke": {
           title: "Attiéké & sauce",
           category: "Restauration",
-          alt: "Attiéké et sauce graine"
+          alt: "Attiéké et sauce graine — Majestic Residence Hotel, Bonoua"
         },
         "table-terrasse": {
           title: "Table en terrasse",
           category: "Restauration",
-          alt: "Table dressée avec nappe rouge sur la terrasse"
+          alt: "Table dressée avec nappe rouge sur la terrasse — Majestic Residence Hotel, Bonoua"
         },
         "loisir-billard": {
           title: "Billard",
@@ -303,12 +303,12 @@
         "loisir-babyfoot": {
           title: "Baby-foot",
           category: "Loisirs",
-          alt: "Table de baby-foot pour des moments conviviaux"
+          alt: "Table de baby-foot pour des moments conviviaux — Majestic Residence Hotel, Bonoua"
         },
         "loisir-massage": {
           title: "Espace massage",
           category: "Loisirs",
-          alt: "Fauteuil de massage de l'espace détente"
+          alt: "Fauteuil de massage de l'espace détente — Majestic Residence Hotel, Bonoua"
         }
       }
     },
@@ -446,22 +446,22 @@
         chambre: {
           title: "The room",
           category: "Rooms",
-          alt: "Room with a double bed, wall art and warm lighting"
+          alt: "Room with a double bed, wall art and warm lighting — Majestic Residence Hotel, Bonoua"
         },
         piscineJour: {
           title: "The pool",
           category: "Pool",
-          alt: "Daytime view of the courtyard and pool from the balcony, with palms and the residence buildings"
+          alt: "Daytime view of the courtyard and pool from the balcony, with palms and the residence buildings — Majestic Residence Hotel, Bonoua"
         },
         piscineCour: {
           title: "The courtyard",
           category: "Pool",
-          alt: "Pool in the central courtyard surrounded by the residence buildings"
+          alt: "Pool in the central courtyard surrounded by the residence buildings — Majestic Residence Hotel, Bonoua"
         },
         "cour-panorama": {
           title: "The courtyard",
           category: "Pool",
-          alt: "Wide view of the courtyard and pool with palm trees and the white and burgundy buildings"
+          alt: "Wide view of the courtyard and pool with palm trees and the white and burgundy buildings — Majestic Residence Hotel, Bonoua"
         },
         exterieur: {
           title: "The residence",
@@ -476,102 +476,102 @@
         nuitBleue: {
           title: "The residence at night",
           category: "At night",
-          alt: "Blue pool lights reflecting on the facade after nightfall"
+          alt: "Blue pool lights reflecting on the facade after nightfall — Majestic Residence Hotel, Bonoua"
         },
         nuitTerrasse: {
           title: "Night view",
           category: "At night",
-          alt: "Elevated view over the pool and the residence at night"
+          alt: "Elevated view over the pool and the residence at night — Majestic Residence Hotel, Bonoua"
         },
         "chambre-01": {
           title: "Bright room",
           category: "Rooms",
-          alt: "Room with yellow walls, double bed and blue curtains"
+          alt: "Room with yellow walls, double bed and blue curtains — Majestic Residence Hotel, Bonoua"
         },
         "chambre-02": {
           title: "Room with lounge",
           category: "Rooms",
-          alt: "Pink room with a lounge corner, white chairs and round table"
+          alt: "Pink room with a lounge corner, white chairs and round table — Majestic Residence Hotel, Bonoua"
         },
         "chambre-03": {
           title: "Colourful room",
           category: "Rooms",
-          alt: "Grey room with a multicoloured bedspread and golden curtains"
+          alt: "Grey room with a multicoloured bedspread and golden curtains — Majestic Residence Hotel, Bonoua"
         },
         "chambre-04": {
           title: "Elegant room",
           category: "Rooms",
-          alt: "Room with a circular-pattern bedspread and wall decor"
+          alt: "Room with a circular-pattern bedspread and wall decor — Majestic Residence Hotel, Bonoua"
         },
         "chambre-05": {
           title: "Mosaic room",
           category: "Rooms",
-          alt: "Pink room with a mosaic wall and double bed"
+          alt: "Pink room with a mosaic wall and double bed — Majestic Residence Hotel, Bonoua"
         },
         "chambre-06": {
           title: "Red room",
           category: "Rooms",
-          alt: "Room with a red wall, colourful bedspread and television"
+          alt: "Room with a red wall, colourful bedspread and television — Majestic Residence Hotel, Bonoua"
         },
         "chambre-07": {
           title: "Room with seating",
           category: "Rooms",
-          alt: "White room with two armchairs and a yellow table"
+          alt: "White room with two armchairs and a yellow table — Majestic Residence Hotel, Bonoua"
         },
         "cour-nuit-verte": {
           title: "Green pool at night",
           category: "At night",
-          alt: "Pool lit in green in the courtyard, seen from above"
+          alt: "Pool lit in green in the courtyard, seen from above — Majestic Residence Hotel, Bonoua"
         },
         "cour-nuit-rouge": {
           title: "Red pool at night",
           category: "At night",
-          alt: "Pool lit in red surrounded by the buildings"
+          alt: "Pool lit in red surrounded by the buildings — Majestic Residence Hotel, Bonoua"
         },
         "cour-nuit-magenta": {
           title: "Magenta pool",
           category: "At night",
-          alt: "Pool lit in magenta in the central courtyard"
+          alt: "Pool lit in magenta in the central courtyard — Majestic Residence Hotel, Bonoua"
         },
         "cour-nuit-violette": {
           title: "Violet pool",
           category: "At night",
-          alt: "Pool with violet reflections under the residence lights"
+          alt: "Pool with violet reflections under the residence lights — Majestic Residence Hotel, Bonoua"
         },
         "cour-jour-piscine": {
           title: "Pool by day",
           category: "Outdoors",
-          alt: "Pool and residence buildings in daylight"
+          alt: "Pool and residence buildings in daylight — Majestic Residence Hotel, Bonoua"
         },
         "cour-jardin": {
           title: "Courtyard garden",
           category: "Outdoors",
-          alt: "Lawn and planting of the central courtyard"
+          alt: "Lawn and planting of the central courtyard — Majestic Residence Hotel, Bonoua"
         },
         "cour-vue-aerienne": {
           title: "Aerial view",
           category: "Outdoors",
-          alt: "Elevated view over the pool and the residence roofs"
+          alt: "Elevated view over the pool and the residence roofs — Majestic Residence Hotel, Bonoua"
         },
         "cour-terrasse": {
           title: "Shaded terrace",
           category: "Dining",
-          alt: "Set table on the shaded terrace of the residence"
+          alt: "Set table on the shaded terrace of the residence — Majestic Residence Hotel, Bonoua"
         },
         "plat-poulet": {
           title: "Braised chicken & rice",
           category: "Dining",
-          alt: "Plate of rice and braised chicken in sauce"
+          alt: "Plate of rice and braised chicken in sauce — Majestic Residence Hotel, Bonoua"
         },
         "plat-escargots": {
           title: "Sautéed snails",
           category: "Dining",
-          alt: "Attiéké, sautéed snails and sauce"
+          alt: "Attiéké, sautéed snails and sauce — Majestic Residence Hotel, Bonoua"
         },
         "plat-poisson": {
           title: "Attiéké & fish",
           category: "Dining",
-          alt: "Attiéké, braised fish, tomatoes and onions"
+          alt: "Attiéké, braised fish, tomatoes and onions — Majestic Residence Hotel, Bonoua"
         },
         "plat-buffet": {
           title: "Buffet",
@@ -581,22 +581,22 @@
         "plat-braise": {
           title: "Braised chicken",
           category: "Dining",
-          alt: "Garnished plate of braised chicken"
+          alt: "Garnished plate of braised chicken — Majestic Residence Hotel, Bonoua"
         },
         "plat-frites": {
           title: "Fries & chicken",
           category: "Dining",
-          alt: "Fries and braised chicken in sauce"
+          alt: "Fries and braised chicken in sauce — Majestic Residence Hotel, Bonoua"
         },
         "plat-attieke": {
           title: "Attiéké & sauce",
           category: "Dining",
-          alt: "Attiéké and palm-nut sauce"
+          alt: "Attiéké and palm-nut sauce — Majestic Residence Hotel, Bonoua"
         },
         "table-terrasse": {
           title: "Terrace table",
           category: "Dining",
-          alt: "Set table with a red cloth on the terrace"
+          alt: "Set table with a red cloth on the terrace — Majestic Residence Hotel, Bonoua"
         },
         "loisir-billard": {
           title: "Billiards",
@@ -606,12 +606,12 @@
         "loisir-babyfoot": {
           title: "Foosball",
           category: "Leisure",
-          alt: "Foosball table for friendly moments"
+          alt: "Foosball table for friendly moments — Majestic Residence Hotel, Bonoua"
         },
         "loisir-massage": {
           title: "Massage space",
           category: "Leisure",
-          alt: "Massage chair in the relaxation area"
+          alt: "Massage chair in the relaxation area — Majestic Residence Hotel, Bonoua"
         }
       }
     }
